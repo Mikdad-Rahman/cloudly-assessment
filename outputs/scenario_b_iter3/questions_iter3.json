@@ -1,0 +1,67 @@
+[
+  {
+    "question_text": "What is the approximate total floor area of the Cuartel Valpara\u00edso facility?",
+    "options": {
+      "A": "4,820 m\u00b2",
+      "B": "3,820 m\u00b2",
+      "C": "5,820 m\u00b2",
+      "D": "2,820 m\u00b2"
+    },
+    "correct_answer": "A",
+    "explanation": "The total floor area of Cuartel Valpara\u00edso is given as 4,820 m\u00b2 in the study material.",
+    "id": 41,
+    "section_id": 8
+  },
+  {
+    "question_text": "How many micro-caches are maintained by the asset across the Andean cordillera?",
+    "options": {
+      "A": "15",
+      "B": "19",
+      "C": "25",
+      "D": "20"
+    },
+    "correct_answer": "B",
+    "explanation": "The asset maintains a network of 19 micro-caches distributed across the Andean cordillera.",
+    "id": 42,
+    "section_id": 8
+  },
+  {
+    "question_text": "What is the frequency of rotation of cache locations in the asset's micro-cache network?",
+    "options": {
+      "A": "Every 6 months",
+      "B": "Every 12 months",
+      "C": "Every 36 months",
+      "D": "Every 24 months"
+    },
+    "correct_answer": "C",
+    "explanation": "Cache locations are rotated every 36 months.",
+    "id": 43,
+    "section_id": 8
+  },
+  {
+    "question_text": "What is the total floor area of Cuartel Valpara\u00edso that is allocated for residential purposes for the asset?",
+    "options": {
+      "A": "44 m\u00b2",
+      "B": "4,820 m\u00b2",
+      "C": "38 m\u00b2",
+      "D": "142 m\u00b2"
+    },
+    "correct_answer": "A",
+    "explanation": "The asset's personal residence wing has an area of 44 m\u00b2, located in Block C.",
+    "id": 44,
+    "section_id": 8
+  },
+  {
+    "question_text": "In which year were the current placements of the micro-caches in the asset's network finalized?",
+    "options": {
+      "A": "2020",
+      "B": "2022",
+      "C": "2024",
+      "D": "2027"
+    },
+    "correct_answer": "C",
+    "explanation": "The current placements of the micro-caches were finalized in 2024 and will be reviewed in 2027.",
+    "id": 45,
+    "section_id": 8
+  }
+]

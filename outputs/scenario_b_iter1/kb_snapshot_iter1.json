@@ -1,0 +1,463 @@
+[
+  {
+    "id": 4,
+    "section_ids": "[5, 8]",
+    "created_at": "2026-05-21T00:07:16.233687",
+    "score": 7,
+    "total_questions": 10,
+    "questions": [
+      {
+        "id": 16,
+        "session_id": 4,
+        "section_id": 5,
+        "question_text": "What is the maximum number of activations permitted per 60-second window according to the Three-Two-One Rule?",
+        "options": {
+          "A": "Two",
+          "B": "Three",
+          "C": "Four",
+          "D": "Five"
+        },
+        "correct_answer": "B",
+        "explanation": "The Three-Two-One Rule states that the maximum number of activations per 60-second window is three.",
+        "user_answer": "B",
+        "is_correct": 1,
+        "created_at": "2026-05-21T00:07:18.110718"
+      },
+      {
+        "id": 17,
+        "session_id": 4,
+        "section_id": 5,
+        "question_text": "What is the primary purpose of the Drop-Tune Manoeuvre?",
+        "options": {
+          "A": "To create a kinetic-cover zone",
+          "B": "To deliver a strike at full thrown velocity from an arbitrary location",
+          "C": "To permit a meaningful one-second window between release and engagement target acquisition",
+          "D": "To enforce cooldown discipline"
+        },
+        "correct_answer": "C",
+        "explanation": "The Drop-Tune Manoeuvre is used to permit a meaningful one-second window between release and engagement target acquisition.",
+        "user_answer": "C",
+        "is_correct": 1,
+        "created_at": "2026-05-21T00:07:18.188181"
+      },
+      {
+        "id": 18,
+        "session_id": 4,
+        "section_id": 5,
+        "question_text": "How many objects can be simultaneously held in mid-air using the Suspended Field Technique?",
+        "options": {
+          "A": "Two",
+          "B": "Three",
+          "C": "Four",
+          "D": "Five"
+        },
+        "correct_answer": "C",
+        "explanation": "The Suspended Field Technique can hold a maximum of four low-mass objects simultaneously.",
+        "user_answer": "C",
+        "is_correct": 1,
+        "created_at": "2026-05-21T00:07:18.263257"
+      },
+      {
+        "id": 19,
+        "session_id": 4,
+        "section_id": 5,
+        "question_text": "What is the minimum time required for the contact-exclusion field to clear after releasing an object in the Drop-Tune Manoeuvre?",
+        "options": {
+          "A": "0.1 seconds",
+          "B": "0.2 seconds",
+          "C": "0.3 seconds",
+          "D": "0.4 seconds"
+        },
+        "correct_answer": "C",
+        "explanation": "The contact-exclusion field clears after approximately 0.3 seconds in the Drop-Tune Manoeuvre.",
+        "user_answer": "C",
+        "is_correct": 1,
+        "created_at": "2026-05-21T00:07:18.337450"
+      },
+      {
+        "id": 20,
+        "session_id": 4,
+        "section_id": 5,
+        "question_text": "What is the result of violating any element of the Three-Two-One Rule?",
+        "options": {
+          "A": "Automatic call-off by the cell handler",
+          "B": "Warning from the cell handler",
+          "C": "Temporary suspension of operations",
+          "D": "Permanent removal from operations"
+        },
+        "correct_answer": "A",
+        "explanation": "Violations of any element of the Three-Two-One Rule trigger an automatic call-off by the cell handler.",
+        "user_answer": "A",
+        "is_correct": 1,
+        "created_at": "2026-05-21T00:07:18.453821"
+      },
+      {
+        "id": 21,
+        "session_id": 4,
+        "section_id": 8,
+        "question_text": "What is the total floor area of Cuartel Valpara\u00edso?",
+        "options": {
+          "A": "4,820 m\u00b2",
+          "B": "3,820 m\u00b2",
+          "C": "5,820 m\u00b2",
+          "D": "2,820 m\u00b2"
+        },
+        "correct_answer": "A",
+        "explanation": "The total floor area of Cuartel Valpara\u00edso is given in the study material as 4,820 m\u00b2.",
+        "user_answer": "C",
+        "is_correct": 0,
+        "created_at": "2026-05-21T00:07:19.940766"
+      },
+      {
+        "id": 22,
+        "session_id": 4,
+        "section_id": 8,
+        "question_text": "What is the function of the Edificio Marasol base?",
+        "options": {
+          "A": "Field office, Bolivian altiplano operations",
+          "B": "PAMC Headquarters",
+          "C": "Logistics-only annex, southern operations",
+          "D": "Regional CBMP medical office"
+        },
+        "correct_answer": "B",
+        "explanation": "The Edificio Marasol base is mentioned in the study material as the PAMC Headquarters.",
+        "user_answer": "B",
+        "is_correct": 1,
+        "created_at": "2026-05-21T00:07:20.037107"
+      },
+      {
+        "id": 23,
+        "session_id": 4,
+        "section_id": 8,
+        "question_text": "How many micro-caches are maintained by the asset across the Andean cordillera?",
+        "options": {
+          "A": "15 micro-caches",
+          "B": "19 micro-caches",
+          "C": "25 micro-caches",
+          "D": "10 micro-caches"
+        },
+        "correct_answer": "B",
+        "explanation": "The study material states that the asset maintains a network of 19 micro-caches.",
+        "user_answer": "C",
+        "is_correct": 0,
+        "created_at": "2026-05-21T00:07:20.112506"
+      },
+      {
+        "id": 24,
+        "session_id": 4,
+        "section_id": 8,
+        "question_text": "What is the status of the S-4 safehouse in Antofagasta, Antofagasta?",
+        "options": {
+          "A": "Inactive",
+          "B": "Under construction",
+          "C": "Active (rebuilt 2024 after damage)",
+          "D": "Abandoned"
+        },
+        "correct_answer": "C",
+        "explanation": "The S-4 safehouse in Antofagasta, Antofagasta is mentioned in the study material as being active and rebuilt in 2024 after damage.",
+        "user_answer": "C",
+        "is_correct": 1,
+        "created_at": "2026-05-21T00:07:20.195523"
+      },
+      {
+        "id": 25,
+        "session_id": 4,
+        "section_id": 8,
+        "question_text": "How often are cache locations rotated?",
+        "options": {
+          "A": "Every 12 months",
+          "B": "Every 24 months",
+          "C": "Every 36 months",
+          "D": "Every 60 months"
+        },
+        "correct_answer": "C",
+        "explanation": "The study material states that cache locations are rotated every 36 months.",
+        "user_answer": "D",
+        "is_correct": 0,
+        "created_at": "2026-05-21T00:07:20.270783"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "section_ids": "[1]",
+    "created_at": "2026-05-20T18:36:16.309519",
+    "score": 0,
+    "total_questions": 5,
+    "questions": [
+      {
+        "id": 11,
+        "session_id": 3,
+        "section_id": 1,
+        "question_text": "In which mountain did the powers-emergence event of the asset SLATEFALL occur?",
+        "options": {
+          "A": "Cerro Castillo",
+          "B": "Cerro Chalt\u00e9n",
+          "C": "Cerro Hudson",
+          "D": "Cerro Mac\u00e1"
+        },
+        "correct_answer": "A",
+        "explanation": "The powers-emergence event of the asset SLATEFALL occurred on the eastern slate face of Cerro Castillo, Ays\u00e9n Region, Chile.",
+        "user_answer": "B",
+        "is_correct": 0,
+        "created_at": "2026-05-20T18:36:18.626539"
+      },
+      {
+        "id": 12,
+        "session_id": 3,
+        "section_id": 1,
+        "question_text": "What is the blood type of the asset SLATEFALL?",
+        "options": {
+          "A": "O-",
+          "B": "A+",
+          "C": "B+",
+          "D": "AB-"
+        },
+        "correct_answer": "B",
+        "explanation": "The blood type of the asset SLATEFALL is A+.",
+        "user_answer": "A",
+        "is_correct": 0,
+        "created_at": "2026-05-20T18:36:18.765938"
+      },
+      {
+        "id": 13,
+        "session_id": 3,
+        "section_id": 1,
+        "question_text": "What is the relation between the asset's powers-emergence event location and her codename?",
+        "options": {
+          "A": "The codename is derived from her father's name",
+          "B": "The codename is derived from the location of her powers-emergence event",
+          "C": "The codename is derived from her mother's name",
+          "D": "The codename is derived from her favorite mountain"
+        },
+        "correct_answer": "B",
+        "explanation": "The codename SLATEFALL was assigned by the PAMC Naming Subcommittee, derived from the asset's powers-emergence event on the eastern slate face of Cerro Castillo, Ays\u00e9n Region, Chile.",
+        "user_answer": "C",
+        "is_correct": 0,
+        "created_at": "2026-05-20T18:36:18.832281"
+      },
+      {
+        "id": 14,
+        "session_id": 3,
+        "section_id": 1,
+        "question_text": "What is the significance of Cerro Castillo in relation to the asset SLATEFALL?",
+        "options": {
+          "A": "It is her favorite mountain for hiking",
+          "B": "It is the location of her powers-emergence event",
+          "C": "It is the location of her military training",
+          "D": "It is the location of her family's vacation home"
+        },
+        "correct_answer": "B",
+        "explanation": "The asset SLATEFALL's powers-emergence event occurred on the eastern slate face of Cerro Castillo, Ays\u00e9n Region, Chile.",
+        "user_answer": "D",
+        "is_correct": 0,
+        "created_at": "2026-05-20T18:36:18.940575"
+      },
+      {
+        "id": 15,
+        "session_id": 3,
+        "section_id": 1,
+        "question_text": "What can be inferred about the asset SLATEFALL's medical history based on her blood type?",
+        "options": {
+          "A": "She has a rare genetic disorder",
+          "B": "She has a common blood type",
+          "C": "She is a universal blood donor",
+          "D": "She is a universal blood recipient"
+        },
+        "correct_answer": "B",
+        "explanation": "The asset SLATEFALL's blood type is A+, which is a relatively common blood type.",
+        "user_answer": "A",
+        "is_correct": 0,
+        "created_at": "2026-05-20T18:36:19.031559"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "section_ids": "[1]",
+    "created_at": "2026-05-20T18:16:46.423772",
+    "score": 5,
+    "total_questions": 5,
+    "questions": [
+      {
+        "id": 6,
+        "session_id": 2,
+        "section_id": 1,
+        "question_text": "Where did the asset's powers-emergence event occur?",
+        "options": {
+          "A": "Cerro Aconcagua",
+          "B": "Cerro Castillo, Ays\u00e9n Region, Chile",
+          "C": "Cerro El Plomo",
+          "D": "Cerro San Crist\u00f3bal"
+        },
+        "correct_answer": "B",
+        "explanation": "According to the study material, the asset's powers-emergence event occurred on the eastern slate face of Cerro Castillo, Ays\u00e9n Region, Chile.",
+        "user_answer": "B",
+        "is_correct": 1,
+        "created_at": "2026-05-20T18:16:48.377139"
+      },
+      {
+        "id": 7,
+        "session_id": 2,
+        "section_id": 1,
+        "question_text": "What is the name of the mountain where the asset's powers-emergence event took place, and what is its geographical location?",
+        "options": {
+          "A": "Cerro Chalt\u00e9n, Patagonia",
+          "B": "Cerro Castillo, Ays\u00e9n Region, Chile",
+          "C": "Cerro Tronador, Los Lagos Region",
+          "D": "Cerro Hudson, Ays\u00e9n Region, Chile"
+        },
+        "correct_answer": "B",
+        "explanation": "The study material states that the asset's powers-emergence event occurred on the eastern slate face of Cerro Castillo, Ays\u00e9n Region, Chile.",
+        "user_answer": "B",
+        "is_correct": 1,
+        "created_at": "2026-05-20T18:16:48.505636"
+      },
+      {
+        "id": 8,
+        "session_id": 2,
+        "section_id": 1,
+        "question_text": "What is the asset's blood type?",
+        "options": {
+          "A": "O-",
+          "B": "A+",
+          "C": "B-",
+          "D": "AB+"
+        },
+        "correct_answer": "B",
+        "explanation": "The study material mentions that the asset's blood type is A+.",
+        "user_answer": "B",
+        "is_correct": 1,
+        "created_at": "2026-05-20T18:16:48.572152"
+      },
+      {
+        "id": 9,
+        "session_id": 2,
+        "section_id": 1,
+        "question_text": "In which region of Chile did the asset's powers-emergence event occur?",
+        "options": {
+          "A": "Magallanes Region",
+          "B": "Ays\u00e9n Region",
+          "C": "Los Lagos Region",
+          "D": "Antofagasta Region"
+        },
+        "correct_answer": "B",
+        "explanation": "The study material states that the asset's powers-emergence event occurred on the eastern slate face of Cerro Castillo, Ays\u00e9n Region, Chile.",
+        "user_answer": "B",
+        "is_correct": 1,
+        "created_at": "2026-05-20T18:16:48.663521"
+      },
+      {
+        "id": 10,
+        "session_id": 2,
+        "section_id": 1,
+        "question_text": "What is the geographical feature associated with the asset's powers-emergence event?",
+        "options": {
+          "A": "Glacier",
+          "B": "Slate face of a mountain",
+          "C": "Volcanic crater",
+          "D": "River delta"
+        },
+        "correct_answer": "B",
+        "explanation": "According to the study material, the asset's powers-emergence event occurred on the eastern slate face of Cerro Castillo, Ays\u00e9n Region, Chile.",
+        "user_answer": "B",
+        "is_correct": 1,
+        "created_at": "2026-05-20T18:16:48.731057"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "section_ids": "[1]",
+    "created_at": "2026-05-20T18:11:02.714030",
+    "score": 3,
+    "total_questions": 5,
+    "questions": [
+      {
+        "id": 1,
+        "session_id": 1,
+        "section_id": 1,
+        "question_text": "What is the registry threat-to-handler rating of the asset SLATEFALL?",
+        "options": {
+          "A": "0.5 / 5",
+          "B": "0.7 / 5",
+          "C": "1.0 / 5",
+          "D": "1.5 / 5"
+        },
+        "correct_answer": "B",
+        "explanation": "The registry threat-to-handler rating is mentioned in the study material as 0.7 / 5.",
+        "user_answer": "B",
+        "is_correct": 1,
+        "created_at": "2026-05-20T18:11:04.612554"
+      },
+      {
+        "id": 2,
+        "session_id": 1,
+        "section_id": 1,
+        "question_text": "What is the civilian identity of the asset SLATEFALL?",
+        "options": {
+          "A": "Capt. (ret.) Inez Yolanda Calvache-Renstr\u00f6m",
+          "B": "Coronel (ret.) Hern\u00e1n Calvache-Mardones",
+          "C": "Dr. Claire Renstr\u00f6m-Verdugo",
+          "D": "Inez Calvache"
+        },
+        "correct_answer": "A",
+        "explanation": "The civilian identity of the asset is mentioned in the study material as Capt. (ret.) Inez Yolanda Calvache-Renstr\u00f6m.",
+        "user_answer": "A",
+        "is_correct": 1,
+        "created_at": "2026-05-20T18:11:04.789630"
+      },
+      {
+        "id": 3,
+        "session_id": 1,
+        "section_id": 1,
+        "question_text": "What is the name of the mountain where the asset's powers-emergence event occurred?",
+        "options": {
+          "A": "Cerro Castillo",
+          "B": "Cerro Chalt\u00e9n",
+          "C": "Cerro San Lorenzo",
+          "D": "Cerro Torre"
+        },
+        "correct_answer": "A",
+        "explanation": "The powers-emergence event occurred on the eastern slate face of Cerro Castillo, Ays\u00e9n Region, Chile.",
+        "user_answer": "B",
+        "is_correct": 0,
+        "created_at": "2026-05-20T18:11:04.855912"
+      },
+      {
+        "id": 4,
+        "session_id": 1,
+        "section_id": 1,
+        "question_text": "What is the asset's blood type?",
+        "options": {
+          "A": "O-",
+          "B": "A+",
+          "C": "B-",
+          "D": "AB+"
+        },
+        "correct_answer": "B",
+        "explanation": "The asset's blood type is mentioned in the study material as A+.",
+        "user_answer": "D",
+        "is_correct": 0,
+        "created_at": "2026-05-20T18:11:04.931143"
+      },
+      {
+        "id": 5,
+        "session_id": 1,
+        "section_id": 1,
+        "question_text": "What is the asset's height?",
+        "options": {
+          "A": "1.65 m",
+          "B": "1.68 m",
+          "C": "1.70 m",
+          "D": "1.72 m"
+        },
+        "correct_answer": "B",
+        "explanation": "The asset's height is mentioned in the study material as 1.68 m.",
+        "user_answer": "B",
+        "is_correct": 1,
+        "created_at": "2026-05-20T18:11:05.005735"
+      }
+    ]
+  }
+]

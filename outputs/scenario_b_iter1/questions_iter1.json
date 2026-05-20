@@ -1,0 +1,132 @@
+[
+  {
+    "question_text": "What is the maximum number of activations permitted per 60-second window according to the Three-Two-One Rule?",
+    "options": {
+      "A": "Two",
+      "B": "Three",
+      "C": "Four",
+      "D": "Five"
+    },
+    "correct_answer": "B",
+    "explanation": "The Three-Two-One Rule states that the maximum number of activations per 60-second window is three.",
+    "id": 16,
+    "section_id": 5
+  },
+  {
+    "question_text": "What is the primary purpose of the Drop-Tune Manoeuvre?",
+    "options": {
+      "A": "To create a kinetic-cover zone",
+      "B": "To deliver a strike at full thrown velocity from an arbitrary location",
+      "C": "To permit a meaningful one-second window between release and engagement target acquisition",
+      "D": "To enforce cooldown discipline"
+    },
+    "correct_answer": "C",
+    "explanation": "The Drop-Tune Manoeuvre is used to permit a meaningful one-second window between release and engagement target acquisition.",
+    "id": 17,
+    "section_id": 5
+  },
+  {
+    "question_text": "How many objects can be simultaneously held in mid-air using the Suspended Field Technique?",
+    "options": {
+      "A": "Two",
+      "B": "Three",
+      "C": "Four",
+      "D": "Five"
+    },
+    "correct_answer": "C",
+    "explanation": "The Suspended Field Technique can hold a maximum of four low-mass objects simultaneously.",
+    "id": 18,
+    "section_id": 5
+  },
+  {
+    "question_text": "What is the minimum time required for the contact-exclusion field to clear after releasing an object in the Drop-Tune Manoeuvre?",
+    "options": {
+      "A": "0.1 seconds",
+      "B": "0.2 seconds",
+      "C": "0.3 seconds",
+      "D": "0.4 seconds"
+    },
+    "correct_answer": "C",
+    "explanation": "The contact-exclusion field clears after approximately 0.3 seconds in the Drop-Tune Manoeuvre.",
+    "id": 19,
+    "section_id": 5
+  },
+  {
+    "question_text": "What is the result of violating any element of the Three-Two-One Rule?",
+    "options": {
+      "A": "Automatic call-off by the cell handler",
+      "B": "Warning from the cell handler",
+      "C": "Temporary suspension of operations",
+      "D": "Permanent removal from operations"
+    },
+    "correct_answer": "A",
+    "explanation": "Violations of any element of the Three-Two-One Rule trigger an automatic call-off by the cell handler.",
+    "id": 20,
+    "section_id": 5
+  },
+  {
+    "question_text": "What is the total floor area of Cuartel Valpara\u00edso?",
+    "options": {
+      "A": "4,820 m\u00b2",
+      "B": "3,820 m\u00b2",
+      "C": "5,820 m\u00b2",
+      "D": "2,820 m\u00b2"
+    },
+    "correct_answer": "A",
+    "explanation": "The total floor area of Cuartel Valpara\u00edso is given in the study material as 4,820 m\u00b2.",
+    "id": 21,
+    "section_id": 8
+  },
+  {
+    "question_text": "What is the function of the Edificio Marasol base?",
+    "options": {
+      "A": "Field office, Bolivian altiplano operations",
+      "B": "PAMC Headquarters",
+      "C": "Logistics-only annex, southern operations",
+      "D": "Regional CBMP medical office"
+    },
+    "correct_answer": "B",
+    "explanation": "The Edificio Marasol base is mentioned in the study material as the PAMC Headquarters.",
+    "id": 22,
+    "section_id": 8
+  },
+  {
+    "question_text": "How many micro-caches are maintained by the asset across the Andean cordillera?",
+    "options": {
+      "A": "15 micro-caches",
+      "B": "19 micro-caches",
+      "C": "25 micro-caches",
+      "D": "10 micro-caches"
+    },
+    "correct_answer": "B",
+    "explanation": "The study material states that the asset maintains a network of 19 micro-caches.",
+    "id": 23,
+    "section_id": 8
+  },
+  {
+    "question_text": "What is the status of the S-4 safehouse in Antofagasta, Antofagasta?",
+    "options": {
+      "A": "Inactive",
+      "B": "Under construction",
+      "C": "Active (rebuilt 2024 after damage)",
+      "D": "Abandoned"
+    },
+    "correct_answer": "C",
+    "explanation": "The S-4 safehouse in Antofagasta, Antofagasta is mentioned in the study material as being active and rebuilt in 2024 after damage.",
+    "id": 24,
+    "section_id": 8
+  },
+  {
+    "question_text": "How often are cache locations rotated?",
+    "options": {
+      "A": "Every 12 months",
+      "B": "Every 24 months",
+      "C": "Every 36 months",
+      "D": "Every 60 months"
+    },
+    "correct_answer": "C",
+    "explanation": "The study material states that cache locations are rotated every 36 months.",
+    "id": 25,
+    "section_id": 8
+  }
+]

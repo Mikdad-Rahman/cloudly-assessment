@@ -1,0 +1,197 @@
+[
+  {
+    "question_text": "When was the Pan-American Metahuman Cooperative (PAMC) founded?",
+    "options": {
+      "A": "22 May 2013",
+      "B": "22 May 2014",
+      "C": "22 May 2015",
+      "D": "22 May 2016"
+    },
+    "correct_answer": "B",
+    "explanation": "According to the study material, the PAMC was founded on 22 May 2014 through the Treaty of Quito.",
+    "id": 26,
+    "section_id": 6
+  },
+  {
+    "question_text": "What is the role of Sgt. Mateo Quispe-Linares in Cell Halc\u00f3n?",
+    "options": {
+      "A": "Lead Officer",
+      "B": "Technical Specialist",
+      "C": "Tracker / Recon",
+      "D": "Field Medic"
+    },
+    "correct_answer": "C",
+    "explanation": "According to the study material, Sgt. Mateo Quispe-Linares is the Tracker / Recon in Cell Halc\u00f3n.",
+    "id": 27,
+    "section_id": 6
+  },
+  {
+    "question_text": "Who is the Director-General of the PAMC?",
+    "options": {
+      "A": "Mar\u00eda-Elena Esp\u00f3sito-Tagle",
+      "B": "A\u00edda Salvatierra-Bunge",
+      "C": "L\u00e9on Marr\u00f3n-Saavedra",
+      "D": "Maite Borghi-Castelnuovo"
+    },
+    "correct_answer": "A",
+    "explanation": "According to the study material, Mar\u00eda-Elena Esp\u00f3sito-Tagle is the Director-General of the PAMC, serving a term from 2022 to 2027.",
+    "id": 28,
+    "section_id": 6
+  },
+  {
+    "question_text": "What is the metahuman classification of Lt. Sol\u00e8ne Bauer-Cortez?",
+    "options": {
+      "A": "Class A-2",
+      "B": "Class C-1 (Electromagnetic Sensing)",
+      "C": "Class B-3",
+      "D": "Class D-4"
+    },
+    "correct_answer": "B",
+    "explanation": "According to the study material, Lt. Sol\u00e8ne Bauer-Cortez has a metahuman classification of Class C-1 (Electromagnetic Sensing).",
+    "id": 29,
+    "section_id": 6
+  },
+  {
+    "question_text": "How many operations has Cell Halc\u00f3n logged as a complete unit through 31 December 2025?",
+    "options": {
+      "A": "30 operations",
+      "B": "40 operations",
+      "C": "47 operations",
+      "D": "50 operations"
+    },
+    "correct_answer": "C",
+    "explanation": "According to the study material, Cell Halc\u00f3n has logged 47 operations as a complete unit through 31 December 2025.",
+    "id": 30,
+    "section_id": 6
+  },
+  {
+    "question_text": "What is the approximate total floor area of the Cuartel Valpara\u00edso facility?",
+    "options": {
+      "A": "4,500 m\u00b2",
+      "B": "4,820 m\u00b2",
+      "C": "5,000 m\u00b2",
+      "D": "5,200 m\u00b2"
+    },
+    "correct_answer": "B",
+    "explanation": "The total floor area of Cuartel Valpara\u00edso is given as 4,820 m\u00b2 in the study material.",
+    "id": 31,
+    "section_id": 8
+  },
+  {
+    "question_text": "How frequently are the cache locations in the asset's micro-cache network rotated?",
+    "options": {
+      "A": "Every 12 months",
+      "B": "Every 24 months",
+      "C": "Every 36 months",
+      "D": "Every 48 months"
+    },
+    "correct_answer": "C",
+    "explanation": "The cache locations are rotated every 36 months, with the current placements finalized in 2024 and to be reviewed in 2027.",
+    "id": 32,
+    "section_id": 8
+  },
+  {
+    "question_text": "How many micro-caches are maintained by the asset across the Andean cordillera?",
+    "options": {
+      "A": "15 micro-caches",
+      "B": "17 micro-caches",
+      "C": "19 micro-caches",
+      "D": "21 micro-caches"
+    },
+    "correct_answer": "C",
+    "explanation": "The asset maintains a network of 19 micro-caches distributed across the Andean cordillera.",
+    "id": 33,
+    "section_id": 8
+  },
+  {
+    "question_text": "What is the primary function of the Edificio Marasol base in Lima?",
+    "options": {
+      "A": "Field office for Peruvian operations",
+      "B": "Logistics-only annex for southern operations",
+      "C": "PAMC Headquarters where the asset rotates through quarterly for senior briefings",
+      "D": "Regional CBMP medical office"
+    },
+    "correct_answer": "C",
+    "explanation": "The Edificio Marasol base in Lima serves as the PAMC Headquarters where the asset rotates through quarterly for senior briefings.",
+    "id": 34,
+    "section_id": 8
+  },
+  {
+    "question_text": "How many safehouses are formally maintained by the asset within her operational territory?",
+    "options": {
+      "A": "3 safehouses",
+      "B": "4 safehouses",
+      "C": "5 safehouses",
+      "D": "6 safehouses"
+    },
+    "correct_answer": "C",
+    "explanation": "The asset has access to five formally maintained safehouses within her operational territory.",
+    "id": 35,
+    "section_id": 8
+  },
+  {
+    "question_text": "What is the format used to record all cases in PAMC?",
+    "options": {
+      "A": "Uniform PAMC format",
+      "B": "Case File Format",
+      "C": "SLATEFALL_DOSSIER format",
+      "D": "Operative Report format"
+    },
+    "correct_answer": "A",
+    "explanation": "The study material mentions that all cases are recorded under a uniform PAMC format.",
+    "id": 36,
+    "section_id": 9
+  },
+  {
+    "question_text": "What was the outcome of Case 2019-0017: Probationary Assessment (Atacama)?",
+    "options": {
+      "A": "Pyrrhic",
+      "B": "Inconclusive",
+      "C": "Successful",
+      "D": "Catastrophic"
+    },
+    "correct_answer": "C",
+    "explanation": "The study material states that the outcome of Case 2019-0017 was Successful.",
+    "id": 37,
+    "section_id": 9
+  },
+  {
+    "question_text": "In which case did the asset first deploy the Suspended Field in combat?",
+    "options": {
+      "A": "Case 2019-0017: Probationary Assessment (Atacama)",
+      "B": "Case 2020-0048: Antofagasta Containment",
+      "C": "Case 2024-0034: Tarapac\u00e1 Concession Raid",
+      "D": "Case 2024-0202: Quebrantadero Showdown (Salta)"
+    },
+    "correct_answer": "C",
+    "explanation": "The study material mentions that the asset first deployed the Suspended Field in combat during Case 2024-0034: Tarapac\u00e1 Concession Raid.",
+    "id": 38,
+    "section_id": 9
+  },
+  {
+    "question_text": "What was the classification of Case 2022-0123: Tropopausa First Engagement (Mendoza)?",
+    "options": {
+      "A": "Declassified",
+      "B": "Open",
+      "C": "Classified (Tier-2)",
+      "D": "Classified (Tier-3)"
+    },
+    "correct_answer": "C",
+    "explanation": "The study material states that the classification of Case 2022-0123 was Classified (Tier-2).",
+    "id": 39,
+    "section_id": 9
+  },
+  {
+    "question_text": "What was the result of the engagement in Case 2023-0067: El Sereno Pursuit (Iquique)?",
+    "options": {
+      "A": "Successful",
+      "B": "Pyrrhic",
+      "C": "Inconclusive",
+      "D": "Catastrophic"
+    },
+    "correct_answer": "C",
+    "explanation": "The study material mentions that the outcome of Case 2023-0067 was Inconclusive.",
+    "id": 40,
+    "section_id": 9
+  }
+]
