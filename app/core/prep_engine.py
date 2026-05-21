@@ -23,10 +23,8 @@ def run_prep_session(
 ) -> dict:
     """
     Run a full prep session for the given section IDs.
-
     simulate_answers: if True, auto-generates answers (for Scenario B output)
     simulate_wrong_ratio: how many answers to get wrong in simulation
-
     Returns the full session result including kb_snapshot.
     """
 
@@ -66,7 +64,6 @@ def run_prep_session(
         section = all_sections[section_id]
         print(f"Generating questions for Section {section_id}: {section['title']}...")
 
-        # Filter weak areas to this section only
         section_weak = [w for w in weak_areas if w["section_id"] == section_id]
 
         questions = generate_mcqs(
@@ -76,7 +73,6 @@ def run_prep_session(
             weak_areas=section_weak if section_weak else None
         )
 
-        # Save each question to DB
         for q in questions:
             qid = save_question(session_id, section_id, q)
             q["id"] = qid
@@ -89,20 +85,16 @@ def run_prep_session(
     user_answers = {}
 
     if simulate_answers:
-        # Auto-simulate answers for Scenario B
         import random
         print("Simulating user answers...\n")
         for i, q in enumerate(all_questions):
             options = list(q["options"].keys())
             if random.random() > simulate_wrong_ratio:
-                # correct answer
                 user_answers[q["id"]] = q["correct_answer"]
             else:
-                # wrong answer — pick a different option
                 wrong_options = [o for o in options if o != q["correct_answer"]]
                 user_answers[q["id"]] = random.choice(wrong_options)
     else:
-        # Real interactive mode — ask user in terminal
         print("Answer each question (A/B/C/D):\n")
         for i, q in enumerate(all_questions, 1):
             print(f"Q{i} [Section {q['section_id']}]: {q['question_text']}")
@@ -140,5 +132,41 @@ def run_prep_session(
         "questions": all_questions,
         "scored": scored,
         "kb_snapshot": kb_snapshot,
+        "is_adaptive": is_returning
+    }
+
+
+def generate_questions_only(section_ids: list[int]) -> dict:
+    """
+    Only generate questions without collecting answers.
+    Used by the Streamlit UI.
+    """
+    all_sections = extract_sections(PDF_PATH)
+    prior_sessions = get_prior_sessions(section_ids)
+    is_returning = len(prior_sessions) > 0
+    weak_areas = get_weak_areas(section_ids) if is_returning else []
+    session_id = create_session(section_ids)
+
+    all_questions = []
+    for section_id in section_ids:
+        if section_id not in all_sections:
+            continue
+        section = all_sections[section_id]
+        section_weak = [w for w in weak_areas if w["section_id"] == section_id]
+        questions = generate_mcqs(
+            section_content=section["content"],
+            section_id=section_id,
+            n_questions=N_QUESTIONS_PER_SECTION,
+            weak_areas=section_weak if section_weak else None
+        )
+        for q in questions:
+            qid = save_question(session_id, section_id, q)
+            q["id"] = qid
+            q["section_id"] = section_id
+            all_questions.append(q)
+
+    return {
+        "session_id": session_id,
+        "questions": all_questions,
         "is_adaptive": is_returning
     }
