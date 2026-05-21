@@ -2,6 +2,8 @@ import os
 import json
 from groq import Groq
 from dotenv import load_dotenv
+from app.core.logger import get_logger
+logger = get_logger("llm")
 
 load_dotenv()
 
@@ -87,14 +89,12 @@ def generate_mcqs(
     n_questions: int = 5,
     weak_areas: list[dict] = None
 ) -> list[dict]:
-    """
-    Generate MCQs from a section of the SLATEFALL dossier.
     
-    If weak_areas is provided (returning user), the prompt instructs
-    the LLM to focus on those topics the user previously got wrong.
-    """
+    logger.info(
+        f"Generating {n_questions} MCQs for section {section_id} "
+        f"(adaptive={'yes' if weak_areas else 'no'})"
+    )
 
-    # Build the adaptive context if we have prior weak areas
     weak_context = ""
     if weak_areas:
         weak_topics = [w["question_text"] for w in weak_areas[:5]]
@@ -124,7 +124,7 @@ Each object must have exactly these fields:
     "question_text": "the question",
     "options": {{
         "A": "first option",
-        "B": "second option", 
+        "B": "second option",
         "C": "third option",
         "D": "fourth option"
     }},
@@ -139,27 +139,38 @@ Rules:
 - Respond with the JSON array only, nothing else
 """
 
-    response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_prompt}
-        ],
-        temperature=0.7,
-        max_tokens=2000
-    )
+    try:
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=[
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": user_prompt}
+            ],
+            temperature=0.7,
+            max_tokens=2000
+        )
 
-    raw = response.choices[0].message.content.strip()
+        raw = response.choices[0].message.content.strip()
+        logger.debug(f"LLM raw response length: {len(raw)} chars")
 
-    # Clean up in case LLM adds markdown backticks anyway
-    if raw.startswith("```"):
-        raw = raw.split("```")[1]
-        if raw.startswith("json"):
-            raw = raw[4:]
-    raw = raw.strip()
+        # Clean markdown if present
+        if raw.startswith("```"):
+            raw = raw.split("```")[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+        raw = raw.strip()
 
-    questions = json.loads(raw)
-    return questions
+        questions = json.loads(raw)
+        logger.info(f"Successfully parsed {len(questions)} questions for section {section_id}")
+        return questions
+
+    except json.JSONDecodeError as e:
+        logger.error(f"Failed to parse LLM JSON response for section {section_id}: {e}")
+        raise ValueError(f"LLM returned invalid JSON for section {section_id}: {e}")
+
+    except Exception as e:
+        logger.error(f"LLM API call failed for section {section_id}: {e}")
+        raise
 
 
 if __name__ == "__main__":

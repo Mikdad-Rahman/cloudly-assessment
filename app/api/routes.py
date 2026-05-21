@@ -6,6 +6,8 @@ from app.db.database import (
     get_weak_areas,
     get_kb_snapshot
 )
+from app.core.logger import get_logger
+logger = get_logger("api")
 
 router = APIRouter()
 
@@ -44,33 +46,37 @@ def list_sections():
 
 @router.post("/prep")
 def start_prep(request: PrepRequest):
-    """
-    Start a prep session for the given section IDs.
-    If simulate=True, answers are auto-generated.
-    """
+    logger.info(f"API prep request — sections: {request.section_ids}")
+    
     if not request.section_ids:
+        logger.warning("Prep request with no section IDs")
         raise HTTPException(status_code=400, detail="No section IDs provided.")
 
     valid = list(range(1, 11))
     for sid in request.section_ids:
         if sid not in valid:
+            logger.warning(f"Invalid section ID requested: {sid}")
             raise HTTPException(
                 status_code=400,
                 detail=f"Invalid section ID: {sid}. Must be between 1 and 10."
             )
 
-    result = run_prep_session(
-        section_ids=request.section_ids,
-        simulate_answers=request.simulate
-    )
-
-    return {
-        "session_id": result["session_id"],
-        "is_adaptive": result["is_adaptive"],
-        "questions": result["questions"],
-        "scored": result["scored"],
-        "kb_snapshot": result["kb_snapshot"]
-    }
+    try:
+        result = run_prep_session(
+            section_ids=request.section_ids,
+            simulate_answers=request.simulate
+        )
+        logger.info(f"Prep session completed — session ID: {result['session_id']}")
+        return {
+            "session_id": result["session_id"],
+            "is_adaptive": result["is_adaptive"],
+            "questions": result["questions"],
+            "scored": result["scored"],
+            "kb_snapshot": result["kb_snapshot"]
+        }
+    except Exception as e:
+        logger.error(f"Prep session failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.get("/history/{section_id}")

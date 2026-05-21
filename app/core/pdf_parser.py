@@ -1,5 +1,7 @@
 import fitz  # this is PyMuPDF
 import re
+from app.core.logger import get_logger
+logger = get_logger("pdf_parser")
 from pathlib import Path
 
 
@@ -16,43 +18,31 @@ def load_pdf_text(pdf_path: str) -> str:
 
 
 def extract_sections(pdf_path: str) -> dict[int, dict]:
-    """
-    Split the PDF text into its 10 sections.
-    Returns a dict like:
-    {
-        1: {"title": "Identity, Background...", "content": "..."},
-        2: {"title": "Powers, Abilities...", "content": "..."},
-        ...
-    }
-    """
+    logger.info(f"Loading PDF: {pdf_path}")
     full_text = load_pdf_text(pdf_path)
-
-    # This pattern matches "Section 1.", "Section 2." etc.
+    logger.debug(f"PDF loaded — {len(full_text)} characters total")
+    
     section_pattern = re.compile(
         r'(Section\s+(\d+)\.\s+([^\n]+))', re.IGNORECASE
     )
-
     matches = list(section_pattern.finditer(full_text))
+    logger.info(f"Found {len(matches)} sections in PDF")
 
     sections = {}
-
     for i, match in enumerate(matches):
         section_num = int(match.group(2))
         section_title = match.group(3).strip()
         start = match.start()
-
-        # Content goes from this match to the next section (or end of text)
         if i + 1 < len(matches):
             end = matches[i + 1].start()
         else:
             end = len(full_text)
-
         content = full_text[start:end].strip()
-
         sections[section_num] = {
             "title": section_title,
             "content": content
         }
+        logger.debug(f"Section {section_num}: {section_title} ({len(content)} chars)")
 
     return sections
 

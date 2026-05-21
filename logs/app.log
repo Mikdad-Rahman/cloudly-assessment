@@ -1,0 +1,23 @@
+2026-05-22 01:14:39 [INFO] prep_engine: Starting prep session — sections: [2]
+2026-05-22 01:14:39 [INFO] prep_engine: First time studying these sections. Adaptive mode OFF.
+2026-05-22 01:14:39 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-22 01:14:40 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-22 01:14:40 [INFO] pdf_parser: Found 10 sections in PDF
+2026-05-22 01:14:40 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-22 01:14:40 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-22 01:14:40 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-22 01:14:40 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-22 01:14:40 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-22 01:14:40 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-22 01:14:40 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-22 01:14:40 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (5326 chars)
+2026-05-22 01:14:40 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-22 01:14:40 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-22 01:14:40 [INFO] prep_engine: Created session ID: 11
+2026-05-22 01:14:40 [INFO] prep_engine: Generating questions for Section 2: Powers, Abilities, and Documented Limits
+2026-05-22 01:14:40 [INFO] llm: Generating 5 MCQs for section 2 (adaptive=no)
+2026-05-22 01:14:42 [DEBUG] llm: LLM raw response length: 2403 chars
+2026-05-22 01:14:42 [INFO] llm: Successfully parsed 5 questions for section 2
+2026-05-22 01:14:42 [INFO] prep_engine: Generated 5 questions total for session 11
+2026-05-22 01:14:42 [INFO] prep_engine: Simulating user answers
+2026-05-22 01:14:43 [INFO] prep_engine: Session 11 complete — Score: 3/5 (60%)
