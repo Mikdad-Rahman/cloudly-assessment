@@ -12,6 +12,74 @@ You generate Multiple Choice Questions (MCQs) from study material.
 You always respond with valid JSON only. No extra text, no markdown, no backticks.
 """
 
+def chunk_section(text: str, chunk_size: int = 1500, overlap: int = 200) -> list[str]:
+    """
+    Split section text into overlapping chunks.
+    
+    chunk_size: characters per chunk
+    overlap: characters shared between consecutive chunks
+    so context isn't lost at boundaries
+    """
+    chunks = []
+    start = 0
+    
+    while start < len(text):
+        end = start + chunk_size
+        chunk = text[start:end]
+        chunks.append(chunk)
+        start += chunk_size - overlap  # overlap keeps context
+        
+    return chunks
+
+
+def get_relevant_chunks(
+    text: str,
+    weak_areas: list[dict] = None,
+    max_chars: int = 4000
+) -> str:
+    """
+    Smartly select the most relevant chunks from a section.
+    
+    If we have weak areas, prioritize chunks containing
+    keywords from those weak topics.
+    If no weak areas, just take the first max_chars.
+    """
+    chunks = chunk_section(text)
+    
+    # If no weak areas or text is short enough, return as much as fits
+    if not weak_areas or len(text) <= max_chars:
+        return text[:max_chars]
+    
+    # Extract keywords from weak area questions
+    keywords = []
+    for w in weak_areas:
+        # Pull meaningful words (longer than 4 chars) from wrong questions
+        words = [
+            word.lower() 
+            for word in w["question_text"].split() 
+            if len(word) > 4
+        ]
+        keywords.extend(words)
+    
+    # Score each chunk by how many keywords it contains
+    scored_chunks = []
+    for chunk in chunks:
+        chunk_lower = chunk.lower()
+        score = sum(1 for kw in keywords if kw in chunk_lower)
+        scored_chunks.append((score, chunk))
+    
+    # Sort by score — highest relevance first
+    scored_chunks.sort(key=lambda x: x[0], reverse=True)
+    
+    # Build final content up to max_chars
+    selected = ""
+    for score, chunk in scored_chunks:
+        if len(selected) + len(chunk) <= max_chars:
+            selected += chunk + "\n\n"
+        else:
+            break
+    
+    return selected.strip() if selected else text[:max_chars]
 
 def generate_mcqs(
     section_content: str,
@@ -48,7 +116,7 @@ Section ID: {section_id}
 {weak_context}
 
 STUDY MATERIAL:
-{section_content[:4000]}
+{get_relevant_chunks(section_content, weak_areas)}
 
 Respond with a JSON array of exactly {n_questions} objects.
 Each object must have exactly these fields:
