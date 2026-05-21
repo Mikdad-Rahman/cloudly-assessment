@@ -64,6 +64,43 @@ Place `SLATEFALL_DOSSIER.pdf` in the root directory.
 
 ---
 
+## Running with Docker (Recommended)
+
+The easiest way to run the full stack.
+
+**Prerequisites:** Docker Desktop installed and running.
+
+**Step 1 — Clone and configure**
+```bash
+git clone https://github.com/Mikdad-Rahman/cloudly-assessment.git
+cd cloudly-assessment
+cp .env.example .env
+# Edit .env and add your GROQ_API_KEY
+```
+
+**Step 2 — Build and run**
+```bash
+docker-compose up --build
+```
+
+This starts two services:
+- FastAPI backend → http://localhost:8000/docs
+- Streamlit UI → http://localhost:8501
+
+**Step 3 — Run Scenario B (in a separate terminal)**
+```bash
+docker-compose exec api python main.py --sections 5 8 --simulate --output-dir outputs/scenario_b_iter1
+docker-compose exec api python main.py --sections 6 8 9 --simulate --output-dir outputs/scenario_b_iter2
+docker-compose exec api python main.py --sections 8 --simulate --output-dir outputs/scenario_b_iter3
+```
+
+**Stop the stack**
+```bash
+docker-compose down
+```
+
+---
+
 ## Running the System
 
 ### As a CLI (interactive prep session)
