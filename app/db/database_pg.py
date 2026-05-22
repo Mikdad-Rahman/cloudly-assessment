@@ -9,7 +9,6 @@ from app.core.logger import get_logger
 load_dotenv()
 logger = get_logger("database_pg")
 
-# PostgreSQL connection string from environment
 PG_HOST = os.getenv("PG_HOST", "localhost")
 PG_PORT = os.getenv("PG_PORT", "5432")
 PG_DB = os.getenv("PG_DB", "cloudly")
@@ -18,13 +17,14 @@ PG_PASSWORD = os.getenv("PG_PASSWORD", "cloudly123")
 
 
 def get_connection():
-    """Get a PostgreSQL connection."""
+    """Get a PostgreSQL connection with timeout."""
     conn = psycopg2.connect(
         host=PG_HOST,
         port=PG_PORT,
         dbname=PG_DB,
         user=PG_USER,
-        password=PG_PASSWORD
+        password=PG_PASSWORD,
+        connect_timeout=2
     )
     return conn
 
@@ -34,7 +34,6 @@ def init_pg_db():
     try:
         conn = get_connection()
         cursor = conn.cursor()
-
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS sessions (
                 id SERIAL PRIMARY KEY,
@@ -44,7 +43,6 @@ def init_pg_db():
                 total_questions INTEGER DEFAULT 0
             )
         """)
-
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS questions (
                 id SERIAL PRIMARY KEY,
@@ -59,19 +57,16 @@ def init_pg_db():
                 created_at TEXT NOT NULL
             )
         """)
-
         conn.commit()
         conn.close()
         logger.info("PostgreSQL database initialized successfully.")
         return True
-
     except Exception as e:
         logger.warning(f"PostgreSQL not available: {e}")
         return False
 
 
 def create_session_pg(section_ids: list[int]) -> int:
-    """Create a new prep session in PostgreSQL."""
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
@@ -86,7 +81,6 @@ def create_session_pg(section_ids: list[int]) -> int:
 
 
 def save_question_pg(session_id: int, section_id: int, question: dict) -> int:
-    """Save a question to PostgreSQL."""
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
@@ -110,7 +104,6 @@ def save_question_pg(session_id: int, section_id: int, question: dict) -> int:
 
 
 def save_answer_pg(question_id: int, user_answer: str, is_correct: bool):
-    """Save a user answer to PostgreSQL."""
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
@@ -123,7 +116,6 @@ def save_answer_pg(question_id: int, user_answer: str, is_correct: bool):
 
 
 def update_session_score_pg(session_id: int, score: int, total: int):
-    """Update session score in PostgreSQL."""
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
@@ -136,7 +128,6 @@ def update_session_score_pg(session_id: int, score: int, total: int):
 
 
 def get_weak_areas_pg(section_ids: list[int]) -> list[dict]:
-    """Get weak areas from PostgreSQL."""
     conn = get_connection()
     cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     placeholders = ",".join(["%s"] * len(section_ids))
@@ -157,7 +148,6 @@ def get_weak_areas_pg(section_ids: list[int]) -> list[dict]:
 
 
 def get_prior_sessions_pg(section_ids: list[int]) -> list[dict]:
-    """Get prior sessions from PostgreSQL."""
     conn = get_connection()
     cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     results = []
@@ -183,7 +173,6 @@ def get_prior_sessions_pg(section_ids: list[int]) -> list[dict]:
 
 
 def get_kb_snapshot_pg() -> list[dict]:
-    """Get KB snapshot from PostgreSQL."""
     conn = get_connection()
     cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     cursor.execute("""

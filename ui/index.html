@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adaptive Prep System v2.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --border: #2a2a3a;
+    --accent: #00ff88;
+    --accent2: #0088ff;
+    --danger: #ff4455;
+    --warn: #ffaa00;
+    --text: #e8e8f0;
+    --text2: #8888aa;
+    --card: #13131e;
+    --radius: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    display: flex;
+  }
+
+  .sidebar {
+    width: 260px;
+    min-height: 100vh;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 100;
+  }
+
+  .sidebar-logo {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .sidebar-logo h1 {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+
+  .sidebar-logo .subtitle {
+    font-size: 11px;
+    color: var(--text2);
+    margin-top: 4px;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .nav { padding: 16px 12px; flex: 1; }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text2);
+    transition: all 0.15s;
+    margin-bottom: 4px;
+    border: 1px solid transparent;
+  }
+
+  .nav-item:hover { background: var(--bg3); color: var(--text); }
+  .nav-item.active { background: var(--bg3); color: var(--accent); border-color: var(--border); }
+
+  .sidebar-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--text2);
+  }
+
+  .status-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  .main { margin-left: 260px; flex: 1; min-height: 100vh; }
+
+  .page { display: none; padding: 40px; max-width: 900px; margin: 0 auto; animation: fadeIn 0.2s ease; }
+  .page.active { display: block; }
+
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+  .page-header { margin-bottom: 32px; }
+
+  .page-header .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .page-header h2 { font-size: 32px; font-weight: 800; letter-spacing: -1px; }
+  .page-header p { color: var(--text2); margin-top: 8px; font-size: 14px; line-height: 1.6; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+
+  .sections-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .section-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .section-card:hover { border-color: var(--accent2); }
+  .section-card.selected { border-color: var(--accent); background: rgba(0,255,136,0.05); }
+
+  .section-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    background: rgba(0,255,136,0.1);
+    padding: 3px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+
+  .section-title { font-size: 13px; font-weight: 600; line-height: 1.4; }
+
+  .btn {
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+  }
+
+  .btn-primary { background: var(--accent); color: #000; }
+  .btn-primary:hover { background: #00dd77; transform: translateY(-1px); }
+  .btn-primary:disabled { background: var(--border); color: var(--text2); cursor: not-allowed; transform: none; }
+  .btn-secondary { background: var(--bg3); color: var(--text); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--accent2); color: var(--accent2); }
+  .btn-danger { background: rgba(255,68,85,0.1); color: var(--danger); border: 1px solid rgba(255,68,85,0.3); }
+
+  .question-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.15s;
+  }
+
+  .question-card.answered { border-color: rgba(0,136,255,0.3); }
+
+  .question-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--accent2);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  .question-text { font-size: 15px; font-weight: 600; line-height: 1.5; margin-bottom: 20px; }
+
+  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .option {
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg2);
+  }
+
+  .option:hover { border-color: var(--accent2); background: var(--bg3); }
+
+  .option.selected { border-color: var(--accent); background: rgba(0,255,136,0.08); color: var(--accent); }
+
+  .option-letter {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent2);
+    background: rgba(0,136,255,0.1);
+    padding: 2px 7px;
+    border-radius: 4px;
+    min-width: 26px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .option.selected .option-letter { background: rgba(0,255,136,0.2); color: var(--accent); }
+
+  .result-correct { background: rgba(0,255,136,0.05); border-color: rgba(0,255,136,0.3); }
+  .result-wrong { background: rgba(255,68,85,0.05); border-color: rgba(255,68,85,0.3); }
+
+  .result-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  .badge-correct { background: rgba(0,255,136,0.15); color: var(--accent); }
+  .badge-wrong { background: rgba(255,68,85,0.15); color: var(--danger); }
+
+  .explanation {
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: rgba(255,170,0,0.05);
+    border-left: 3px solid var(--warn);
+    border-radius: 0 4px 4px 0;
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  .metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 24px; }
+
+  .metric {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+  }
+
+  .metric-value {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    color: var(--text2);
+    margin-top: 4px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .alert {
+    padding: 14px 18px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .alert-info { background: rgba(0,136,255,0.08); border: 1px solid rgba(0,136,255,0.2); color: #66aaff; }
+  .alert-success { background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.2); color: var(--accent); }
+  .alert-warning { background: rgba(255,170,0,0.08); border: 1px solid rgba(255,170,0,0.2); color: var(--warn); }
+  .alert-error { background: rgba(255,68,85,0.08); border: 1px solid rgba(255,68,85,0.2); color: var(--danger); }
+
+  .progress-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 16px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; transition: width 0.4s ease; }
+
+  .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px; gap: 16px; }
+  .spinner { width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--text2); letter-spacing: 1px; }
+
+  .weak-area-item {
+    padding: 10px 14px;
+    background: rgba(255,68,85,0.05);
+    border: 1px solid rgba(255,68,85,0.15);
+    border-radius: var(--radius);
+    font-size: 13px;
+    color: var(--text2);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .weak-area-item::before { content: '→'; color: var(--danger); font-family: 'Space Mono', monospace; }
+
+  .home-section-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .home-section-item:last-child { border-bottom: none; }
+  .home-section-num { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--accent); min-width: 70px; }
+  .home-section-title { font-size: 14px; font-weight: 600; }
+
+  .history-session { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 12px; }
+  .history-header { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
+  .session-meta { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text2); margin-top: 4px; }
+  .session-score { font-family: 'Space Mono', monospace; font-size: 14px; font-weight: 700; color: var(--accent); }
+
+  .divider { height: 1px; background: var(--border); margin: 24px 0; }
+  .flex { display: flex; }
+  .gap-12 { gap: 12px; }
+  .mt-24 { margin-top: 24px; }
+
+  .selected-count { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--text2); margin-bottom: 16px; }
+  .selected-count span { color: var(--accent); font-weight: 700; }
+
+  .submit-bar {
+    position: sticky;
+    bottom: 0;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0 -40px -40px;
+  }
+
+  .submit-progress { flex: 1; }
+  .submit-label { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text2); margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    
+    <h1 id="pdfTitle">Loading...</h1>
+    <div class="subtitle">Adaptive Prep System v2.0</div>
+  </div>
+  <nav class="nav">
+    <div class="nav-item active" onclick="navigate('home')"><span>⬡</span> Home</div>
+    <div class="nav-item" onclick="navigate('prep')"><span>◈</span> Prep Session</div>
+    <div class="nav-item" onclick="navigate('history')"><span>◎</span> History</div>
+    <div class="nav-item" onclick="navigate('kb')"><span>⬟</span> KB Snapshot</div>
+  </nav>
+  <div class="sidebar-footer">
+    <div id="apiStatus"><span class="status-dot"></span> Connecting...</div>
+  </div>
+</aside>
+
+<main class="main">
+
+  <!-- HOME -->
+  <div id="page-home" class="page active">
+    <div class="page-header">
+      
+      <h2>Adaptive Prep System</h2>
+      <p>AI-powered adaptive prep system. Select sections, answer MCQs, and the system learns your weak areas across sessions.</p>
+    </div>
+    <div class="card" id="homeSection">
+      <div class="loading"><div class="spinner"></div><div class="loading-text">Loading sections...</div></div>
+    </div>
+    <div class="card" style="border-color:rgba(0,255,136,0.2)">
+      <div style="font-size:13px;color:var(--text2);line-height:1.9">
+        <strong style="color:var(--text)">How it works:</strong><br>
+        1. Go to <strong style="color:var(--accent)">Prep Session</strong> and select sections to study<br>
+        2. Answer AI-generated MCQs from the SLATEFALL dossier<br>
+        3. Get scored with explanations for wrong answers<br>
+        4. On return visits, RAG + adaptive intelligence focuses on your weak areas
+      </div>
+    </div>
+  </div>
+
+  <!-- PREP SESSION -->
+  <div id="page-prep" class="page">
+    <div id="prepContent"></div>
+  </div>
+
+  <!-- HISTORY -->
+  <div id="page-history" class="page">
+    <div class="page-header">
+      <div class="tag">Session Log</div>
+      <h2>History</h2>
+      <p>Review your past prep sessions by section.</p>
+    </div>
+    <div class="card" style="margin-bottom:20px">
+      <div style="display:flex;gap:12px;align-items:center">
+        <select id="historySection" style="background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:var(--radius);font-family:'Syne',sans-serif;font-size:14px;font-weight:600;flex:1">
+          <option value="">Select section...</option>
+          <option value="1">Section 1</option><option value="2">Section 2</option>
+          <option value="3">Section 3</option><option value="4">Section 4</option>
+          <option value="5">Section 5</option><option value="6">Section 6</option>
+          <option value="7">Section 7</option><option value="8">Section 8</option>
+          <option value="9">Section 9</option><option value="10">Section 10</option>
+        </select>
+        <button class="btn btn-primary" onclick="loadHistory()">Load</button>
+      </div>
+    </div>
+    <div id="historyContent"></div>
+  </div>
+
+  <!-- KB SNAPSHOT -->
+  <div id="page-kb" class="page">
+    <div class="page-header">
+      <div class="tag">Knowledge Base</div>
+      <h2>KB Snapshot</h2>
+      <p>Last 5 sessions stored in the knowledge base.</p>
+    </div>
+    <div id="kbContent">
+      <div class="loading"><div class="spinner"></div><div class="loading-text">Loading...</div></div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+const API = 'http://localhost:8000';
+
+const state = {
+  sections: {},
+  selected: [],
+  questions: [],
+  answers: {},
+  sessionId: null,
+  scored: null,
+  isAdaptive: false,
+  weakAreas: [],
+  phase: 'select'
+};
+
+const pages = ['home','prep','history','kb'];
+
+function navigate(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  document.querySelectorAll('.nav-item')[pages.indexOf(page)].classList.add('active');
+  if (page === 'prep') renderPrepPage();
+  if (page === 'kb') loadKBSnapshot();
+}
+
+async function apiFetch(path, options = {}) {
+  const res = await fetch(API + path, {
+    headers: { 'Content-Type': 'application/json' },
+    ...options
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(err);
+  }
+  return res.json();
+}
+
+async function checkAPI() {
+  try {
+    await apiFetch('/');
+    document.getElementById('apiStatus').innerHTML =
+      '<span class="status-dot"></span><span style="color:var(--accent)">API connected</span>';
+    await loadSections();
+    // Load PDF name
+    try {
+      const info = await apiFetch('/pdf-info');
+      document.getElementById('pdfTitle').textContent = info.name;
+    } catch(e) {
+      document.getElementById('pdfTitle').textContent = 'Adaptive Prep';
+    }
+  } catch(e) {
+    document.getElementById('apiStatus').innerHTML =
+      '<span style="color:var(--danger)">● API offline — start Docker</span>';
+    document.getElementById('pdfTitle').textContent = 'Adaptive Prep';
+  }
+}
+
+async function loadSections() {
+  const data = await apiFetch('/sections');
+  state.sections = {};
+  data.sections.forEach(s => { state.sections[s.id] = s.title; });
+  renderHomeSections();
+}
+
+function renderHomeSections() {
+  document.getElementById('homeSection').innerHTML =
+    Object.entries(state.sections).map(([id, title]) => `
+      <div class="home-section-item">
+        <span class="home-section-num">SECTION ${id}</span>
+        <span class="home-section-title">${title}</span>
+      </div>
+    `).join('');
+}
+
+// ── PREP PAGE ──────────────────────────────────────────
+
+function renderPrepPage() {
+  const el = document.getElementById('prepContent');
+  if (state.phase === 'select')    renderSelect(el);
+  else if (state.phase === 'loading')   renderLoading(el);
+  else if (state.phase === 'questions') renderQuestions(el);
+  else if (state.phase === 'results')   renderResults(el);
+}
+
+function renderSelect(el) {
+  const count = state.selected.length;
+  el.innerHTML = `
+    <div class="page-header">
+      <div class="tag">Prep Session</div>
+      <h2>Select Sections</h2>
+      <p>Choose sections from the SLATEFALL dossier to study.</p>
+    </div>
+    <div class="selected-count">Selected: <span>${count}</span> section${count !== 1 ? 's' : ''}</div>
+    <div class="sections-grid">
+      ${Object.entries(state.sections).map(([id, title]) => `
+        <div class="section-card ${state.selected.includes(+id) ? 'selected' : ''}"
+             onclick="toggleSection(${id})">
+          <span class="section-num">§${id}</span>
+          <span class="section-title">${title}</span>
+        </div>
+      `).join('')}
+    </div>
+    <div class="flex gap-12">
+      <button class="btn btn-primary" onclick="startSession()" ${count === 0 ? 'disabled' : ''}>
+        ▶ Start Prep Session
+      </button>
+      <button class="btn btn-secondary" onclick="state.selected=[];renderPrepPage()">Clear</button>
+    </div>
+  `;
+}
+
+function toggleSection(id) {
+  id = +id;
+  const i = state.selected.indexOf(id);
+  if (i === -1) state.selected.push(id);
+  else state.selected.splice(i, 1);
+  renderPrepPage();
+}
+
+async function startSession() {
+  state.phase = 'loading';
+  renderPrepPage();
+  try {
+    const data = await apiFetch('/generate', {
+      method: 'POST',
+      body: JSON.stringify({ section_ids: state.selected })
+    });
+    state.questions   = data.questions;
+    state.sessionId   = data.session_id;
+    state.isAdaptive  = data.is_adaptive;
+    state.weakAreas   = data.weak_areas || [];
+    state.answers     = {};
+    state.phase       = 'questions';
+    renderPrepPage();
+  } catch(e) {
+    state.phase = 'select';
+    document.getElementById('prepContent').innerHTML = `
+      <div class="alert alert-error">⚠ Failed to generate questions: ${e.message}</div>
+      <button class="btn btn-secondary" onclick="state.phase='select';renderPrepPage()">← Back</button>
+    `;
+  }
+}
+
+function renderLoading(el) {
+  el.innerHTML = `
+    <div class="page-header">
+      <div class="tag">Generating</div>
+      <h2>Preparing Your Session</h2>
+      <p>RAG retrieval + LLM generation in progress...</p>
+    </div>
+    <div class="card">
+      <div class="loading">
+        <div class="spinner"></div>
+        <div class="loading-text">Generating MCQs via RAG + LLM...</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderQuestions(el) {
+  const answered = Object.keys(state.answers).length;
+  const total    = state.questions.length;
+  const pct      = total > 0 ? Math.round((answered / total) * 100) : 0;
+
+  el.innerHTML = `
+    <div class="page-header">
+      <div class="tag">${state.isAdaptive ? '🎯 Adaptive Mode ON' : '📖 First Session'}</div>
+      <h2>Answer ${total} Questions</h2>
+      <p>${state.isAdaptive
+        ? 'Questions are focused on your previous weak areas.'
+        : 'Fresh questions generated from selected sections.'}</p>
+    </div>
+
+    ${state.isAdaptive && state.weakAreas.length > 0 ? `
+      <div class="alert alert-info" style="margin-bottom:8px">
+        🎯 <strong>Adaptive Mode</strong> — Focusing on your weak areas:
+      </div>
+      ${state.weakAreas.map(w => `<div class="weak-area-item">${w.question_text}</div>`).join('')}
+      <div style="margin-bottom:20px"></div>
+    ` : ''}
+
+    ${state.questions.map((q, i) => `
+      <div class="question-card ${state.answers[q.id] ? 'answered' : ''}" id="qcard-${q.id}">
+        <div class="question-num">Q${i+1} — SECTION ${q.section_id}</div>
+        <div class="question-text">${q.question_text}</div>
+        <div class="options">
+          ${Object.entries(q.options).map(([letter, text]) => `
+            <div class="option ${state.answers[q.id] === letter ? 'selected' : ''}"
+                 onclick="selectAnswer(${q.id}, '${letter}', this)">
+              <span class="option-letter">${letter}</span>
+              <span>${text}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `).join('')}
+
+    <div class="submit-bar">
+      <div class="submit-progress">
+        <div class="submit-label">${answered}/${total} answered</div>
+        <div class="progress-bar" style="margin-bottom:0">
+          <div class="progress-fill" style="width:${pct}%"></div>
+        </div>
+      </div>
+      <button class="btn btn-danger" onclick="resetSession()">✕ Cancel</button>
+      <button class="btn btn-primary" onclick="submitAnswers()" ${answered < total ? 'disabled' : ''}>
+        ✓ Submit Answers
+      </button>
+    </div>
+  `;
+}
+
+function selectAnswer(qid, letter) {
+  state.answers[qid] = letter;
+  // Update UI without full re-render for speed
+  const card = document.getElementById('qcard-' + qid);
+  if (card) {
+    card.classList.add('answered');
+    card.querySelectorAll('.option').forEach(opt => {
+      opt.classList.remove('selected');
+      if (opt.querySelector('.option-letter').textContent === letter) {
+        opt.classList.add('selected');
+      }
+    });
+  }
+  // Update progress bar
+  const answered = Object.keys(state.answers).length;
+  const total    = state.questions.length;
+  const pct      = Math.round((answered / total) * 100);
+  const fill     = document.querySelector('.progress-fill');
+  const label    = document.querySelector('.submit-label');
+  const btn      = document.querySelector('.submit-bar .btn-primary');
+  if (fill)  fill.style.width  = pct + '%';
+  if (label) label.textContent = `${answered}/${total} answered`;
+  if (btn)   btn.disabled      = answered < total;
+}
+
+async function submitAnswers() {
+  const el = document.getElementById('prepContent');
+  el.innerHTML = `
+    <div class="page-header"><div class="tag">Scoring</div><h2>Calculating Results...</h2></div>
+    <div class="card"><div class="loading"><div class="spinner"></div><div class="loading-text">Saving to knowledge base...</div></div></div>
+  `;
+
+  try {
+    // Convert answer keys to strings for JSON
+    const answersPayload = {};
+    Object.entries(state.answers).forEach(([k, v]) => { answersPayload[k] = v; });
+
+    const data = await apiFetch('/submit', {
+      method: 'POST',
+      body: JSON.stringify({
+        session_id: state.sessionId,
+        questions:  state.questions,
+        answers:    answersPayload
+      })
+    });
+
+    state.scored = data.scored;
+    state.phase  = 'results';
+    renderPrepPage();
+  } catch(e) {
+    el.innerHTML = `
+      <div class="alert alert-error">⚠ Failed to submit: ${e.message}</div>
+      <button class="btn btn-secondary" onclick="state.phase='questions';renderPrepPage()">← Back</button>
+    `;
+  }
+}
+
+function renderResults(el) {
+  const s = state.scored;
+  const wrong = s.results.filter(r => !r.is_correct);
+
+  let fbClass = 'alert-error';
+  let fbMsg   = '📚 Keep studying! Focus on the explanations below.';
+  if (s.score_percent === 100) { fbClass = 'alert-success'; fbMsg = '🏆 Perfect score! Outstanding work!'; }
+  else if (s.score_percent >= 80) { fbClass = 'alert-success'; fbMsg = '🎉 Great job! You\'re doing really well!'; }
+  else if (s.score_percent >= 60) { fbClass = 'alert-warning'; fbMsg = '📈 Good effort! Review the wrong answers below.'; }
+
+  el.innerHTML = `
+    <div class="page-header">
+      <div class="tag">Results</div>
+      <h2>Session Complete</h2>
+    </div>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-value">${s.score}/${s.total}</div>
+        <div class="metric-label">Score</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">${s.score_percent}%</div>
+        <div class="metric-label">Accuracy</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value" style="font-size:20px;padding-top:8px">${state.isAdaptive ? '🎯 ON' : 'OFF'}</div>
+        <div class="metric-label">Adaptive</div>
+      </div>
+    </div>
+
+    <div class="alert ${fbClass}">${fbMsg}</div>
+    <div class="divider"></div>
+
+    ${s.results.map((r, i) => `
+      <div class="question-card ${r.is_correct ? 'result-correct' : 'result-wrong'}">
+        <div class="result-badge ${r.is_correct ? 'badge-correct' : 'badge-wrong'}">
+          ${r.is_correct ? '✓ CORRECT' : '✗ WRONG'}
+        </div>
+        <div class="question-text">Q${i+1}: ${r.question_text}</div>
+        <div style="font-size:13px;color:var(--text2);margin-top:8px">
+          Your answer: <strong style="color:${r.is_correct ? 'var(--accent)' : 'var(--danger)'}">${r.user_answer}</strong>
+          ${!r.is_correct ? ` &nbsp;·&nbsp; Correct: <strong style="color:var(--accent)">${r.correct_answer}</strong>` : ''}
+        </div>
+        ${!r.is_correct ? `
+          <div class="explanation"><strong style="color:var(--warn)">💡 Explanation:</strong> ${r.explanation}</div>
+        ` : ''}
+      </div>
+    `).join('')}
+
+    ${wrong.length > 0 ? `
+      <div class="divider"></div>
+      <div class="page-header" style="margin-bottom:16px">
+        <div class="tag">Weak Areas</div>
+        <h2 style="font-size:22px">Focus Areas for Next Session</h2>
+        <p>These topics will be prioritized next time you study these sections.</p>
+      </div>
+      ${wrong.map(r => `<div class="weak-area-item">${r.question_text}</div>`).join('')}
+    ` : ''}
+
+    <div class="divider"></div>
+    <div class="flex gap-12">
+      <button class="btn btn-primary" onclick="resetSession()">🔄 New Session</button>
+      <button class="btn btn-secondary" onclick="navigate('history')">📊 View History</button>
+      <button class="btn btn-secondary" onclick="navigate('kb')">🗄 KB Snapshot</button>
+    </div>
+  `;
+}
+
+function resetSession() {
+  state.phase     = 'select';
+  state.questions = [];
+  state.answers   = {};
+  state.scored    = null;
+  state.sessionId = null;
+  state.weakAreas = [];
+  renderPrepPage();
+}
+
+// ── HISTORY ──────────────────────────────────────────
+
+async function loadHistory() {
+  const sid = document.getElementById('historySection').value;
+  if (!sid) return;
+  const el = document.getElementById('historyContent');
+  el.innerHTML = '<div class="loading"><div class="spinner"></div><div class="loading-text">Loading...</div></div>';
+  try {
+    const data = await apiFetch(`/history/${sid}`);
+    const sessions = data.prior_sessions;
+    if (!sessions.length) {
+      el.innerHTML = '<div class="alert alert-info">No history found for this section.</div>';
+      return;
+    }
+    el.innerHTML = `<div class="alert alert-success">Found ${sessions.length} session(s) for Section ${sid}</div>` +
+      sessions.map(s => {
+        const pct = s.total_questions > 0 ? Math.round((s.score / s.total_questions) * 100) : 0;
+        return `
+          <div class="history-session">
+            <div class="history-header">
+              <div>
+                <div style="font-weight:700;font-size:14px">Session #${s.id}</div>
+                <div class="session-meta">${s.created_at.split('T')[0]} · ${s.total_questions} questions · Sections: ${s.section_ids}</div>
+              </div>
+              <div class="session-score">${s.score}/${s.total_questions} (${pct}%)</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+  } catch(e) {
+    el.innerHTML = `<div class="alert alert-error">Error: ${e.message}</div>`;
+  }
+}
+
+// ── KB SNAPSHOT ──────────────────────────────────────
+
+async function loadKBSnapshot() {
+  const el = document.getElementById('kbContent');
+  el.innerHTML = '<div class="loading"><div class="spinner"></div><div class="loading-text">Loading...</div></div>';
+  try {
+    const data = await apiFetch('/kb-snapshot');
+    const sessions = data.kb_snapshot;
+    if (!sessions.length) {
+      el.innerHTML = '<div class="alert alert-info">No sessions in the knowledge base yet.</div>';
+      return;
+    }
+    el.innerHTML = `<div class="alert alert-success">${sessions.length} session(s) in knowledge base</div>` +
+      sessions.map(s => {
+        const pct = s.total_questions > 0 ? Math.round((s.score / s.total_questions) * 100) : 0;
+        return `
+          <div class="history-session">
+            <div class="history-header">
+              <div>
+                <div style="font-weight:700;font-size:14px">Session #${s.id}</div>
+                <div class="session-meta">Sections: ${s.section_ids} · ${s.created_at.split('T')[0]} · ${s.total_questions} questions</div>
+              </div>
+              <div class="session-score">${s.score}/${s.total_questions} (${pct}%)</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+  } catch(e) {
+    el.innerHTML = `<div class="alert alert-error">Error: ${e.message}</div>`;
+  }
+}
+
+// ── INIT ─────────────────────────────────────────────
+checkAPI();
+</script>
+</body>
+</html>

@@ -46,6 +46,17 @@ services:
       - postgres
     restart: unless-stopped
 
+  ui:
+    image: nginx:alpine
+    container_name: cloudly_ui_web
+    ports:
+      - "3001:80"
+    volumes:
+      - ./ui:/usr/share/nginx/html:ro
+    depends_on:
+      - api
+    restart: unless-stopped
+
   streamlit:
     build: .
     container_name: cloudly_ui
@@ -60,7 +71,13 @@ services:
       - PG_DB=cloudly
       - PG_USER=cloudly
       - PG_PASSWORD=cloudly123
-    command: streamlit run streamlit_app.py --server.port 8501 --server.address 0.0.0.0
+    command: >
+      sh -c "sleep 15 &&
+      streamlit run streamlit_app.py
+      --server.port 8501
+      --server.address 0.0.0.0
+      --server.headless true
+      --browser.gatherUsageStats false"
     depends_on:
       - postgres
       - api
