@@ -31,10 +31,11 @@ naive text truncation.
 | LLM | Groq (llama-3.3-70b-versatile) | Free tier, fast inference, strong instruction following |
 | PDF Parsing | PyMuPDF (fitz) | Reliable text extraction, handles complex layouts |
 | RAG / Vector Store | ChromaDB + sentence-transformers | Local vector search, no API needed |
-| Primary Database | SQLite | Zero setup, file-based, works without Docker |
-| Extended Database | PostgreSQL + pgAdmin | Production-grade DB with visual management UI |
+| Database | PostgreSQL + pgAdmin | Production-grade DB with visual management UI |
+| Vector DB | ChromaDB | Semantic search for RAG retrieval |
 | Orchestration | Raw API calls | Keeps the flow transparent and easy to follow |
-| UI | Streamlit | Rapid interactive frontend, pure Python |
+| UI (Primary) | HTML/JS + nginx | Lightweight, Docker-native, instant load |
+| UI (Secondary) | Streamlit | Python-based interactive UI, runs locally |
 | Containerization | Docker + docker-compose | Single command full stack setup |
 | Logging | colorlog | Colored structured terminal + file logs |
 

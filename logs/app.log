@@ -1111,3 +1111,16 @@ connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection re
 2026-05-22 19:19:15 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (5326 chars)
 2026-05-22 19:19:15 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
 2026-05-22 19:19:15 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-22 19:27:02 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-22 19:27:08 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-22 19:27:08 [INFO] pdf_parser: Found 10 sections in PDF
+2026-05-22 19:27:08 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-22 19:27:08 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-22 19:27:08 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-22 19:27:08 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-22 19:27:08 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-22 19:27:08 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-22 19:27:08 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-22 19:27:08 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (5326 chars)
+2026-05-22 19:27:08 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-22 19:27:08 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
