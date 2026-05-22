@@ -55,6 +55,15 @@ def init_db():
     conn.close()
     print("Database initialized successfully.")
 
+    # Initialize RAG index
+    try:
+        from app.core.pdf_parser import extract_sections
+        from app.core.rag import index_sections
+        sections = extract_sections("SLATEFALL_DOSSIER.pdf")
+        index_sections(sections)
+    except Exception as e:
+        print(f"RAG indexing skipped: {e}")
+
 
 def create_session(section_ids: list[int]) -> int:
     """
