@@ -1,6 +1,3 @@
-Here it is in one block — select all and copy:
-
-```markdown
 # Adaptive Document Prep System
 ### Cloudly AI/ML Intern Assessment — Syeed Mikdad Rahman
 
@@ -8,11 +5,21 @@ Here it is in one block — select all and copy:
 
 ## Project Overview
 
-An AI-powered backend system that ingests a multi-section PDF document (SLATEFALL Dossier), generates Multiple Choice Questions (MCQs) using an LLM, scores user responses, and **adapts future question sets based on the user's historical weak areas**.
+An AI-powered backend system that ingests a multi-section PDF document
+(SLATEFALL Dossier), generates Multiple Choice Questions (MCQs) using
+an LLM, scores user responses, and **adapts future question sets based
+on the user's historical weak areas**.
 
-The core differentiator is the adaptive intelligence: on returning prep sessions, the system queries the Knowledge Base for previously wrong answers and feeds that context into the LLM prompt — causing it to focus new questions on topics the user consistently struggles with.
+The core differentiator is the adaptive intelligence: on returning prep
+sessions, the system queries the Knowledge Base for previously wrong
+answers and feeds that context into the LLM prompt — causing it to focus
+new questions on topics the user consistently struggles with.
 
-RAG (Retrieval Augmented Generation) powers the context retrieval — the entire dossier is chunked, embedded using `all-MiniLM-L6-v2`, and stored in ChromaDB. On each MCQ generation request, semantically relevant chunks are retrieved via vector similarity search rather than naive text truncation.
+RAG (Retrieval Augmented Generation) powers the context retrieval —
+the entire dossier is chunked, embedded using `all-MiniLM-L6-v2`, and
+stored in ChromaDB. On each MCQ generation request, semantically
+relevant chunks are retrieved via vector similarity search rather than
+naive text truncation.
 
 ---
 
@@ -24,10 +31,10 @@ RAG (Retrieval Augmented Generation) powers the context retrieval — the entire
 | LLM | Groq (llama-3.3-70b-versatile) | Free tier, fast inference, strong instruction following |
 | PDF Parsing | PyMuPDF (fitz) | Reliable text extraction, handles complex layouts |
 | RAG / Vector Store | ChromaDB + sentence-transformers | Local vector search, no API needed |
-| Database | PostgreSQL + pgAdmin | Production-grade DB with visual management UI |
+| Primary Database | SQLite | Zero setup, file-based, works without Docker |
+| Extended Database | PostgreSQL + pgAdmin | Production-grade DB with visual management UI |
 | Orchestration | Raw API calls | Keeps the flow transparent and easy to follow |
-| UI (Primary) | HTML/JS + nginx | Lightweight, Docker-native, instant load |
-| UI (Secondary) | Streamlit | Python-based interactive UI, runs locally |
+| UI | Streamlit | Rapid interactive frontend, pure Python |
 | Containerization | Docker + docker-compose | Single command full stack setup |
 | Logging | colorlog | Colored structured terminal + file logs |
 
@@ -46,7 +53,7 @@ SLATEFALL_DOSSIER.pdf
         ▼
   Prep Engine
         │
-        ├──► KB Check (PostgreSQL)
+        ├──► KB Check (SQLite / PostgreSQL)
         │         │
         │         └──► Weak Areas (if returning user)
         │
@@ -71,6 +78,8 @@ SLATEFALL_DOSSIER.pdf
 
 ## Quick Start — Docker (Recommended)
 
+The easiest way to run the full stack with a single command.
+
 **Step 1 — Clone and configure**
 ```bash
 git clone https://github.com/Mikdad-Rahman/cloudly-assessment.git
@@ -88,8 +97,8 @@ docker-compose up --build
 
 | Service | URL | Credentials |
 |---------|-----|-------------|
-| HTML/JS UI | http://localhost:3001 | — |
 | FastAPI Docs | http://localhost:8000/docs | — |
+| Streamlit UI | http://localhost:8501 | — |
 | pgAdmin | http://localhost:5050 | admin@cloudly.io / admin123 |
 | PostgreSQL | localhost:5432 | cloudly / cloudly123 |
 
@@ -98,29 +107,17 @@ docker-compose up --build
 2. Login: admin@cloudly.io / admin123
 3. Right click Servers → Register → Server
 4. Name: cloudly
-5. Connection tab: Host: postgres, Port: 5432, Database: cloudly, Username: cloudly, Password: cloudly123
+5. Connection tab:
+   - Host: postgres
+   - Port: 5432
+   - Database: cloudly
+   - Username: cloudly
+   - Password: cloudly123
 
 **Stop the stack**
 ```bash
 docker-compose down
 ```
-
----
-
-## UI Options
-
-### HTML/JS UI v2.0 (Docker — Recommended)
-A lightweight, Docker-native UI served by nginx. Instant load, no Python startup time. Calls the FastAPI backend directly via REST.
-```
-http://localhost:3001
-```
-
-### Streamlit UI (Local)
-A Python-based interactive UI. Works best running locally while Docker services are running. During development, a startup timing issue was discovered with ChromaDB initialization inside Docker on Windows/WSL2 — the HTML/JS UI was built as a Docker-native alternative.
-```bash
-streamlit run streamlit_app.py
-```
-Open http://localhost:8501
 
 ---
 
@@ -151,12 +148,8 @@ cp .env.example .env
 ```
 
 **5. Place the SLATEFALL PDF**
-Place `SLATEFALL_DOSSIER.pdf` in the root directory.
 
-**6. Start PostgreSQL (required)**
-```bash
-docker-compose up -d postgres
-```
+Place `SLATEFALL_DOSSIER.pdf` in the root directory.
 
 ---
 
@@ -183,6 +176,12 @@ python main.py --serve
 ```
 Open http://localhost:8000/docs for interactive API documentation.
 
+### Streamlit UI
+```bash
+streamlit run streamlit_app.py
+```
+Open http://localhost:8501
+
 ---
 
 ## API Endpoints
@@ -190,11 +189,8 @@ Open http://localhost:8000/docs for interactive API documentation.
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | / | Health check |
-| GET | /pdf-info | Get current PDF filename and display name |
 | GET | /sections | List all 10 dossier sections |
-| POST | /prep | Run a full prep session (CLI/simulate mode) |
-| POST | /generate | Generate questions for UI (no answers) |
-| POST | /submit | Submit answers, score and save to DB |
+| POST | /prep | Run a prep session |
 | GET | /history/{section_id} | Get prior sessions for a section |
 | GET | /weak-areas?section_ids=1,2 | Get weak areas for sections |
 | GET | /kb-snapshot | Get last 5 sessions snapshot |
@@ -237,7 +233,8 @@ outputs/
 **Why adaptive behavior is visible across iterations:**
 - Iter 1 studies sections 5 and 8 cold — fresh questions generated
 - Iter 2 returns to section 8 — weak areas from Iter 1 detected, questions refocused
-- Iter 3 studies section 8 again — weak areas from both prior sessions compound, questions drill the consistently wrong topics harder
+- Iter 3 studies section 8 again — weak areas from both prior sessions compound,
+  questions drill the consistently wrong topics harder
 
 ---
 
@@ -247,7 +244,7 @@ outputs/
 
 | Column | Type | Description |
 |--------|------|-------------|
-| id | SERIAL PK | Unique session ID |
+| id | INTEGER PK | Unique session ID |
 | section_ids | TEXT | JSON array of studied sections |
 | created_at | TEXT | ISO timestamp |
 | score | INTEGER | Correct answer count |
@@ -257,7 +254,7 @@ outputs/
 
 | Column | Type | Description |
 |--------|------|-------------|
-| id | SERIAL PK | Unique question ID |
+| id | INTEGER PK | Unique question ID |
 | session_id | INTEGER FK | Links to session |
 | section_id | INTEGER | Source section |
 | question_text | TEXT | The MCQ question |
@@ -271,22 +268,30 @@ outputs/
 
 ## How Adaptive Intelligence Works
 
-1. Every session, all questions and answers are persisted to PostgreSQL
-2. On a returning session, `get_weak_areas()` queries questions the user answered incorrectly across prior sessions for those sections
-3. Weak area topics are extracted and used as the RAG query — so ChromaDB retrieves chunks most relevant to the user's weak spots
-4. Weak area topics are also injected into the LLM prompt as explicit focus instructions
-5. The LLM generates new questions targeting those weak spots from different angles — avoiding repetition while reinforcing weak areas
+1. Every session, all questions and answers are persisted to the KB
+2. On a returning session, `get_weak_areas()` queries questions the
+   user answered incorrectly across prior sessions for those sections
+3. Weak area topics are extracted and used as the RAG query — so
+   ChromaDB retrieves chunks most relevant to the user's weak spots
+4. Weak area topics are also injected into the LLM prompt as explicit
+   focus instructions
+5. The LLM generates new questions targeting those weak spots from
+   different angles — avoiding repetition while reinforcing weak areas
 
 ---
 
 ## How RAG Works
 
-1. On first run, the entire dossier is chunked into 255 overlapping segments (500 chars each, 100 char overlap)
+1. On first run, the entire SLATEFALL dossier is chunked into
+   255 overlapping segments (500 chars each, 100 char overlap)
 2. Each chunk is embedded using `all-MiniLM-L6-v2` sentence transformer
 3. Vectors are stored persistently in ChromaDB (`chroma_db/` folder)
-4. On MCQ generation, a semantic query is built from weak area question texts (adaptive sessions) or a generic "key facts and details" query (fresh sessions)
+4. On MCQ generation, a semantic query is built from:
+   - Weak area question texts (adaptive sessions)
+   - Generic "key facts and details" query (fresh sessions)
 5. ChromaDB returns the top-6 most semantically similar chunks
-6. These chunks form the context sent to the LLM — no truncation, no keyword matching, pure semantic relevance
+6. These chunks form the context sent to the LLM — no truncation,
+   no keyword matching, pure semantic relevance
 
 ---
 
@@ -305,24 +310,19 @@ cloudly_assessment/
 │   │   ├── scorer.py           # Answer scoring and result display
 │   │   └── logger.py           # Structured colored logging
 │   └── db/
-│       ├── database.py         # DB router — delegates to PostgreSQL
-│       └── database_pg.py      # PostgreSQL — sessions, questions, answers
-├── ui/
-│   └── index.html              # HTML/JS UI v2.0 (served by nginx)
+│       ├── database.py         # SQLite KB — schema, queries, snapshots
+│       └── database_pg.py      # PostgreSQL KB — production database
 ├── outputs/
 │   ├── scenario_b_iter1/       # questions_iter1.json + kb_snapshot_iter1.json
 │   ├── scenario_b_iter2/       # questions_iter2.json + kb_snapshot_iter2.json
 │   └── scenario_b_iter3/       # questions_iter3.json + kb_snapshot_iter3.json
-├── .streamlit/
-│   └── config.toml             # Streamlit server config
 ├── chroma_db/                  # ChromaDB vector store (auto-generated)
 ├── logs/                       # Structured log files (auto-generated)
-├── streamlit_app.py            # Streamlit UI (runs locally)
+├── streamlit_app.py            # Interactive Streamlit UI
 ├── main.py                     # CLI + FastAPI entry point
 ├── Dockerfile                  # Container definition
 ├── docker-compose.yml          # Full stack orchestration
 ├── requirements.txt
-├── requirements-docker.txt     # CPU-optimized dependencies for Docker
 ├── .env.example                # Environment variable template
 └── SLATEFALL_DOSSIER.pdf       # Source document
 ```
@@ -332,8 +332,9 @@ cloudly_assessment/
 ## Known Limitations
 
 - LLM output is non-deterministic — question phrasing varies between runs
-- ChromaDB vectors are pre-built on first run — re-indexing requires deleting the `chroma_db/` folder
+- ChromaDB vectors are pre-built on first run — re-indexing requires
+  deleting the `chroma_db/` folder
 - The system requires an active internet connection for Groq API calls
-- Streamlit UI has a startup timing issue with ChromaDB inside Docker on Windows/WSL2 — use the HTML/JS UI at http://localhost:3001 instead
+- PostgreSQL is optional — system falls back to SQLite automatically
+  if PostgreSQL is not available
 - Simulated answers use random selection — results vary between runs
-```
