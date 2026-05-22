@@ -1,6 +1,32 @@
 version: "3.9"
 
 services:
+
+  postgres:
+    image: postgres:15
+    container_name: cloudly_postgres
+    environment:
+      POSTGRES_DB: cloudly
+      POSTGRES_USER: cloudly
+      POSTGRES_PASSWORD: cloudly123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: cloudly_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@cloudly.io
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
   api:
     build: .
     container_name: cloudly_api
@@ -10,7 +36,14 @@ services:
       - .:/app
     environment:
       - GROQ_API_KEY=${GROQ_API_KEY}
+      - PG_HOST=postgres
+      - PG_PORT=5432
+      - PG_DB=cloudly
+      - PG_USER=cloudly
+      - PG_PASSWORD=cloudly123
     command: python main.py --serve
+    depends_on:
+      - postgres
     restart: unless-stopped
 
   streamlit:
@@ -22,7 +55,16 @@ services:
       - .:/app
     environment:
       - GROQ_API_KEY=${GROQ_API_KEY}
+      - PG_HOST=postgres
+      - PG_PORT=5432
+      - PG_DB=cloudly
+      - PG_USER=cloudly
+      - PG_PASSWORD=cloudly123
     command: streamlit run streamlit_app.py --server.port 8501 --server.address 0.0.0.0
     depends_on:
+      - postgres
       - api
     restart: unless-stopped
+
+volumes:
+  postgres_data:

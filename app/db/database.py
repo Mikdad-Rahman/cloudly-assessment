@@ -13,7 +13,7 @@ def get_connection():
     return conn
 
 
-def init_db():
+def _init_sqlite():
     """
     Create all tables if they don't exist yet.
     This runs once when the app starts.
@@ -221,3 +221,17 @@ def get_kb_snapshot() -> list[dict]:
 
 if __name__ == "__main__":
     init_db()
+    
+def init_db():
+    """Initialize both SQLite and PostgreSQL if available."""
+    # SQLite always works
+    _init_sqlite()
+    
+    # Try PostgreSQL
+    try:
+        from app.db.database_pg import init_pg_db
+        pg_available = init_pg_db()
+        if pg_available:
+            logger.info("PostgreSQL is available and initialized.")
+    except Exception as e:
+        logger.warning(f"PostgreSQL not available, using SQLite only: {e}")
