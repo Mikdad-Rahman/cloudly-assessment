@@ -23,7 +23,7 @@ def extract_sections(pdf_path: str) -> dict[int, dict]:
     logger.debug(f"PDF loaded — {len(full_text)} characters total")
     
     section_pattern = re.compile(
-        r'(Section\s+(\d+)\.\s+([^\n]+))', re.IGNORECASE
+        r'((?:Section|Chapter|Part|Module|Unit)\s+(\d+)[\.:\-]?\s+([^\n]+))', re.IGNORECASE
     )
     matches = list(section_pattern.finditer(full_text))
     logger.info(f"Found {len(matches)} sections in PDF")

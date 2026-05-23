@@ -86,6 +86,48 @@ def index_sections(sections: dict) -> None:
 
     logger.info(f"Indexing complete — {len(all_chunks)} chunks stored in ChromaDB")
 
+def reindex_collection(sections: dict) -> None:
+    """Force reindex — clears existing collection and reindexes from scratch."""
+    logger.info("Force reindexing ChromaDB — clearing existing collection...")
+
+    try:
+        client.delete_collection("slatefall_dossier")
+        logger.info("Existing collection deleted.")
+    except Exception as e:
+        logger.warning(f"Could not delete collection: {e}")
+
+    collection = get_or_create_collection()
+
+    logger.info("Indexing new PDF into ChromaDB...")
+
+    all_chunks = []
+    all_ids = []
+    all_metadata = []
+
+    for section_id, data in sections.items():
+        chunks = chunk_text(data["content"])
+        logger.info(f"Section {section_id}: {len(chunks)} chunks")
+
+        for i, chunk in enumerate(chunks):
+            chunk_id = f"section_{section_id}_chunk_{i}"
+            all_chunks.append(chunk)
+            all_ids.append(chunk_id)
+            all_metadata.append({
+                "section_id": section_id,
+                "section_title": data["title"],
+                "chunk_index": i
+            })
+
+    batch_size = 50
+    for i in range(0, len(all_chunks), batch_size):
+        collection.add(
+            documents=all_chunks[i:i+batch_size],
+            ids=all_ids[i:i+batch_size],
+            metadatas=all_metadata[i:i+batch_size]
+        )
+        logger.info(f"Indexed batch {i//batch_size + 1}")
+
+    logger.info(f"Reindexing complete — {len(all_chunks)} chunks stored in ChromaDB")
 
 def retrieve_relevant_chunks(
     query: str,

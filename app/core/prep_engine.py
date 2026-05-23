@@ -1,7 +1,9 @@
+import os
 import json
 from app.core.pdf_parser import extract_sections
 from app.core.llm import generate_mcqs
 from app.core.scorer import score_session, display_results
+from app.core.config import get_pdf_path
 from app.db.database import (
     create_session,
     save_question,
@@ -14,7 +16,6 @@ from app.db.database import (
 from app.core.logger import get_logger
 logger = get_logger("prep_engine")
 
-PDF_PATH = "SLATEFALL_DOSSIER.pdf"
 N_QUESTIONS_PER_SECTION = 5
 
 
@@ -24,7 +25,9 @@ def run_prep_session(
     simulate_wrong_ratio: float = 0.4
 ) -> dict:
 
-    logger.info(f"Starting prep session — sections: {section_ids}")
+    pdf_path = get_pdf_path()
+    pdf_name = os.path.basename(pdf_path)
+    logger.info(f"Starting prep session — sections: {section_ids} — PDF: {pdf_name}")
 
     prior_sessions = get_prior_sessions(section_ids)
     is_returning = len(prior_sessions) > 0
@@ -34,9 +37,9 @@ def run_prep_session(
     else:
         logger.info("First time studying these sections. Adaptive mode OFF.")
 
-    all_sections = extract_sections(PDF_PATH)
+    all_sections = extract_sections(pdf_path)
     weak_areas = get_weak_areas(section_ids) if is_returning else []
-    session_id = create_session(section_ids)
+    session_id = create_session(section_ids, pdf_name)
     logger.info(f"Created session ID: {session_id}")
 
     all_questions = []
@@ -122,15 +125,15 @@ def run_prep_session(
 
 
 def generate_questions_only(section_ids: list[int]) -> dict:
-    """
-    Only generate questions without collecting answers.
-    Used by the Streamlit UI.
-    """
-    all_sections = extract_sections(PDF_PATH)
+    """Only generate questions without collecting answers. Used by the UI."""
+    pdf_path = get_pdf_path()
+    pdf_name = os.path.basename(pdf_path)
+
+    all_sections = extract_sections(pdf_path)
     prior_sessions = get_prior_sessions(section_ids)
     is_returning = len(prior_sessions) > 0
     weak_areas = get_weak_areas(section_ids) if is_returning else []
-    session_id = create_session(section_ids)
+    session_id = create_session(section_ids, pdf_name)
 
     all_questions = []
     for section_id in section_ids:

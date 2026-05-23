@@ -1,4 +1,5 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, UploadFile, File
+import shutil
 from pydantic import BaseModel
 from app.core.prep_engine import run_prep_session, generate_questions_only
 from app.db.database import (
@@ -11,6 +12,8 @@ from app.db.database import (
 from app.core.scorer import score_session
 from app.core.logger import get_logger
 import os
+import json
+from app.core.config import get_pdf_path, set_pdf_path
 
 logger = get_logger("api")
 
@@ -49,17 +52,61 @@ def root():
 @router.get("/pdf-info")
 def get_pdf_info():
     """Get the current PDF filename and display name."""
-    pdf_path = "SLATEFALL_DOSSIER.pdf"
+    pdf_path = get_pdf_path()
     filename = os.path.basename(pdf_path)
     name = os.path.splitext(filename)[0].replace("_", " ").replace("-", " ").title()
     return {"filename": filename, "name": name}
 
+@router.post("/upload-pdf")
+async def upload_pdf(file: UploadFile = File(...)):
+    """Upload a new PDF, re-parse sections and re-index ChromaDB."""
+    if not file.filename.endswith(".pdf"):
+        raise HTTPException(status_code=400, detail="Only PDF files are accepted.")
+
+    save_path = f"uploaded_{file.filename}"
+    with open(save_path, "wb") as f:
+        shutil.copyfileobj(file.file, f)
+
+    logger.info(f"PDF uploaded: {save_path}")
+
+    try:
+        set_pdf_path(save_path)
+
+        from app.core.pdf_parser import extract_sections
+        sections = extract_sections(save_path)
+
+        if not sections:
+            raise HTTPException(status_code=400, detail="Could not parse any sections from the PDF.")
+
+        from app.core.rag import reindex_collection
+        reindex_collection(sections)
+
+        filename = os.path.basename(save_path)
+        name = os.path.splitext(filename)[0].replace("_", " ").replace("-", " ").title()
+
+        logger.info(f"PDF processed — {len(sections)} sections, ChromaDB reindexed")
+
+        return {
+            "message": "PDF uploaded and indexed successfully.",
+            "filename": filename,
+            "name": name,
+            "sections": len(sections),
+            "section_list": [
+                {"id": k, "title": v["title"]}
+                for k, v in sections.items()
+            ]
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"PDF processing failed: {e}")
+        raise HTTPException(status_code=500, detail=f"PDF processing failed: {str(e)}")
 
 @router.get("/sections")
 def list_sections():
     """List all available sections in the dossier."""
     from app.core.pdf_parser import extract_sections
-    sections = extract_sections("SLATEFALL_DOSSIER.pdf")
+    sections = extract_sections(get_pdf_path())
     return {
         "sections": [
             {"id": k, "title": v["title"]}
@@ -173,8 +220,22 @@ def submit_answers(request: SubmitRequest):
 
 @router.get("/history/{section_id}")
 def get_section_history(section_id: int):
-    """Get prior prep sessions for a section."""
+    """Get prior prep sessions for a section including questions."""
     sessions = get_prior_sessions([section_id])
+    # Get questions for each session
+    from app.db.database_pg import get_connection
+    import psycopg2.extras
+    conn = get_connection()
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    for session in sessions:
+        cursor.execute("""
+            SELECT * FROM questions WHERE session_id = %s
+        """, (session["id"],))
+        questions = [dict(row) for row in cursor.fetchall()]
+        for q in questions:
+            q["options"] = json.loads(q["options"])
+        session["questions"] = questions
+    conn.close()
     return {"section_id": section_id, "prior_sessions": sessions}
 
 
@@ -194,3 +255,42 @@ def kb_snapshot():
     """Get the current knowledge base snapshot (last 5 sessions)."""
     snapshot = get_kb_snapshot()
     return {"kb_snapshot": snapshot}
+
+@router.get("/all-sessions")
+def get_all_sessions():
+    """Get all sessions grouped by PDF name."""
+    try:
+        from app.db.database_pg import get_connection
+        import psycopg2.extras
+        conn = get_connection()
+        cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+        cursor.execute("""
+            SELECT s.id, s.section_ids, s.created_at, s.score,
+                   s.total_questions, s.pdf_name
+            FROM sessions s
+            ORDER BY s.created_at DESC
+        """)
+        sessions = [dict(row) for row in cursor.fetchall()]
+
+        # Load questions for each session
+        for session in sessions:
+            cursor.execute("SELECT * FROM questions WHERE session_id = %s", (session["id"],))
+            questions = [dict(row) for row in cursor.fetchall()]
+            for q in questions:
+                q["options"] = json.loads(q["options"])
+            session["questions"] = questions
+
+        conn.close()
+
+        # Group by PDF name
+        grouped = {}
+        for s in sessions:
+            pdf = s["pdf_name"] or "SLATEFALL_DOSSIER.pdf"
+            if pdf not in grouped:
+                grouped[pdf] = []
+            grouped[pdf].append(s)
+
+        return {"grouped_sessions": grouped}
+    except Exception as e:
+        logger.error(f"Failed to get all sessions: {e}")
+        raise HTTPException(status_code=500, detail=str(e))

@@ -38,9 +38,9 @@ def init_db():
         logger.warning(f"RAG indexing skipped: {e}")
 
 
-def create_session(section_ids: list[int]) -> int:
+def create_session(section_ids: list[int], pdf_name: str = "SLATEFALL_DOSSIER.pdf") -> int:
     from app.db.database_pg import create_session_pg
-    return create_session_pg(section_ids)
+    return create_session_pg(section_ids, pdf_name)
 
 
 def save_question(session_id: int, section_id: int, question: dict) -> int:

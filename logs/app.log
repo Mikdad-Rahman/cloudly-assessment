@@ -1124,3 +1124,457 @@ connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection re
 2026-05-22 19:27:08 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (5326 chars)
 2026-05-22 19:27:08 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
 2026-05-22 19:27:08 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-22 19:46:11 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-22 19:46:17 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-22 19:46:17 [INFO] pdf_parser: Found 10 sections in PDF
+2026-05-22 19:46:17 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-22 19:46:17 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-22 19:46:17 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-22 19:46:17 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-22 19:46:17 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-22 19:46:17 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-22 19:46:17 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-22 19:46:17 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (5326 chars)
+2026-05-22 19:46:17 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-22 19:46:17 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 06:24:44 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 06:24:52 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 06:24:52 [INFO] pdf_parser: Found 10 sections in PDF
+2026-05-23 06:24:52 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 06:24:52 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 06:24:52 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 06:24:52 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 06:24:52 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 06:24:52 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 06:24:52 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 06:24:52 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (5326 chars)
+2026-05-23 06:24:52 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 06:24:52 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 06:52:02 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 06:52:09 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 06:52:09 [INFO] pdf_parser: Found 10 sections in PDF
+2026-05-23 06:52:09 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 06:52:09 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 06:52:09 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 06:52:09 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 06:52:09 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 06:52:09 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 06:52:09 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 06:52:09 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (5326 chars)
+2026-05-23 06:52:09 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 06:52:09 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 07:00:30 [INFO] api: PDF uploaded: uploaded_BLACKTIDE_DOSSIER.pdf
+2026-05-23 07:00:30 [INFO] pdf_parser: Loading PDF: uploaded_BLACKTIDE_DOSSIER.pdf
+2026-05-23 07:00:30 [DEBUG] pdf_parser: PDF loaded — 73195 characters total
+2026-05-23 07:00:30 [INFO] pdf_parser: Found 0 sections in PDF
+2026-05-23 07:00:49 [INFO] api: PDF uploaded: uploaded_BLACKTIDE_DOSSIER.pdf
+2026-05-23 07:00:49 [INFO] pdf_parser: Loading PDF: uploaded_BLACKTIDE_DOSSIER.pdf
+2026-05-23 07:00:49 [DEBUG] pdf_parser: PDF loaded — 73195 characters total
+2026-05-23 07:00:49 [INFO] pdf_parser: Found 0 sections in PDF
+2026-05-23 07:10:23 [INFO] api: PDF uploaded: uploaded_BLACKTIDE_PROPER_DOSSIER.pdf
+2026-05-23 07:10:23 [INFO] pdf_parser: Loading PDF: uploaded_BLACKTIDE_PROPER_DOSSIER.pdf
+2026-05-23 07:10:23 [DEBUG] pdf_parser: PDF loaded — 5331 characters total
+2026-05-23 07:10:23 [INFO] pdf_parser: Found 8 sections in PDF
+2026-05-23 07:10:23 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (1071 chars)
+2026-05-23 07:10:23 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (738 chars)
+2026-05-23 07:10:23 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (789 chars)
+2026-05-23 07:10:23 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (359 chars)
+2026-05-23 07:10:23 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (470 chars)
+2026-05-23 07:10:23 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (375 chars)
+2026-05-23 07:10:23 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (361 chars)
+2026-05-23 07:10:23 [DEBUG] pdf_parser: Section 8: Current Operational Status (375 chars)
+2026-05-23 07:11:18 [INFO] rag: Force reindexing ChromaDB — clearing existing collection...
+2026-05-23 07:11:19 [INFO] rag: Existing collection deleted.
+2026-05-23 07:11:19 [INFO] rag: Indexing new PDF into ChromaDB...
+2026-05-23 07:11:19 [INFO] rag: Section 1: 3 chunks
+2026-05-23 07:11:19 [INFO] rag: Section 2: 2 chunks
+2026-05-23 07:11:19 [INFO] rag: Section 3: 2 chunks
+2026-05-23 07:11:19 [INFO] rag: Section 4: 1 chunks
+2026-05-23 07:11:19 [INFO] rag: Section 5: 2 chunks
+2026-05-23 07:11:19 [INFO] rag: Section 6: 1 chunks
+2026-05-23 07:11:19 [INFO] rag: Section 7: 1 chunks
+2026-05-23 07:11:19 [INFO] rag: Section 8: 1 chunks
+2026-05-23 07:11:22 [INFO] rag: Indexed batch 1
+2026-05-23 07:11:22 [INFO] rag: Reindexing complete — 13 chunks stored in ChromaDB
+2026-05-23 07:11:22 [INFO] api: PDF processed — 8 sections, ChromaDB reindexed
+2026-05-23 07:13:31 [INFO] api: Generate request — sections: [1, 3]
+2026-05-23 07:13:32 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 07:13:39 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 07:13:39 [INFO] pdf_parser: Found 10 sections in PDF
+2026-05-23 07:13:39 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 07:13:39 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 07:13:39 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 07:13:39 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 07:13:39 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 07:13:39 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 07:13:39 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 07:13:39 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (5326 chars)
+2026-05-23 07:13:39 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 07:13:39 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 07:13:39 [INFO] database_pg: Created PostgreSQL session ID: 4
+2026-05-23 07:13:39 [INFO] llm: Generating 5 MCQs for section 1 (adaptive=yes)
+2026-05-23 07:13:40 [DEBUG] rag: Retrieved 3 chunks for query: How many named cross-border deployments did Calvac...
+2026-05-23 07:13:40 [INFO] llm: RAG retrieved context for sections [1]
+2026-05-23 07:13:42 [DEBUG] llm: LLM raw response length: 2925 chars
+2026-05-23 07:13:42 [INFO] llm: Successfully parsed 5 questions for section 1
+2026-05-23 07:13:42 [INFO] llm: Generating 5 MCQs for section 3 (adaptive=yes)
+2026-05-23 07:13:42 [DEBUG] rag: Retrieved 2 chunks for query: What was the outcome of the formal Cooperative inq...
+2026-05-23 07:13:42 [INFO] llm: RAG retrieved context for sections [3]
+2026-05-23 07:13:45 [DEBUG] llm: LLM raw response length: 3014 chars
+2026-05-23 07:13:45 [INFO] llm: Successfully parsed 5 questions for section 3
+2026-05-23 07:13:45 [INFO] api: Generated 10 questions — session 4
+2026-05-23 07:14:33 [INFO] api: Submit request — session 4
+2026-05-23 07:14:34 [INFO] api: Session 4 scored — 2/10 (20%)
+2026-05-23 07:15:53 [INFO] api: Generate request — sections: [1]
+2026-05-23 07:15:53 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 07:16:00 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 07:16:00 [INFO] pdf_parser: Found 10 sections in PDF
+2026-05-23 07:16:00 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 07:16:00 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 07:16:00 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 07:16:00 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 07:16:00 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 07:16:00 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 07:16:00 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 07:16:00 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (5326 chars)
+2026-05-23 07:16:00 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 07:16:00 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 07:16:00 [INFO] database_pg: Created PostgreSQL session ID: 5
+2026-05-23 07:16:00 [INFO] llm: Generating 5 MCQs for section 1 (adaptive=yes)
+2026-05-23 07:16:00 [DEBUG] rag: Retrieved 3 chunks for query: How many named cross-border deployments did Calvac...
+2026-05-23 07:16:00 [INFO] llm: RAG retrieved context for sections [1]
+2026-05-23 07:16:01 [DEBUG] llm: LLM raw response length: 2889 chars
+2026-05-23 07:16:01 [INFO] llm: Successfully parsed 5 questions for section 1
+2026-05-23 07:16:02 [INFO] api: Generated 5 questions — session 5
+2026-05-23 07:18:58 [INFO] api: PDF uploaded: uploaded_SLATEFALL_DOSSIER.pdf
+2026-05-23 07:18:58 [INFO] pdf_parser: Loading PDF: uploaded_SLATEFALL_DOSSIER.pdf
+2026-05-23 07:19:05 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 07:19:05 [INFO] pdf_parser: Found 10 sections in PDF
+2026-05-23 07:19:05 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 07:19:05 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 07:19:05 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 07:19:05 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 07:19:05 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 07:19:05 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 07:19:05 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 07:19:05 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (5326 chars)
+2026-05-23 07:19:05 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 07:19:05 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 07:19:05 [INFO] rag: Force reindexing ChromaDB — clearing existing collection...
+2026-05-23 07:19:05 [INFO] rag: Existing collection deleted.
+2026-05-23 07:19:05 [INFO] rag: Indexing new PDF into ChromaDB...
+2026-05-23 07:19:05 [INFO] rag: Section 1: 16 chunks
+2026-05-23 07:19:05 [INFO] rag: Section 2: 41 chunks
+2026-05-23 07:19:05 [INFO] rag: Section 3: 25 chunks
+2026-05-23 07:19:05 [INFO] rag: Section 4: 29 chunks
+2026-05-23 07:19:05 [INFO] rag: Section 5: 19 chunks
+2026-05-23 07:19:05 [INFO] rag: Section 6: 22 chunks
+2026-05-23 07:19:05 [INFO] rag: Section 7: 37 chunks
+2026-05-23 07:19:05 [INFO] rag: Section 8: 14 chunks
+2026-05-23 07:19:05 [INFO] rag: Section 9: 21 chunks
+2026-05-23 07:19:05 [INFO] rag: Section 10: 31 chunks
+2026-05-23 07:19:08 [INFO] rag: Indexed batch 1
+2026-05-23 07:19:09 [INFO] rag: Indexed batch 2
+2026-05-23 07:19:11 [INFO] rag: Indexed batch 3
+2026-05-23 07:19:13 [INFO] rag: Indexed batch 4
+2026-05-23 07:19:14 [INFO] rag: Indexed batch 5
+2026-05-23 07:19:15 [INFO] rag: Indexed batch 6
+2026-05-23 07:19:15 [INFO] rag: Reindexing complete — 255 chunks stored in ChromaDB
+2026-05-23 07:19:15 [INFO] api: PDF processed — 10 sections, ChromaDB reindexed
+2026-05-23 07:37:57 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 07:38:05 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 07:38:05 [INFO] pdf_parser: Found 10 sections in PDF
+2026-05-23 07:38:05 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 07:38:05 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 07:38:05 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 07:38:05 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 07:38:05 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 07:38:05 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 07:38:05 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 07:38:05 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (5326 chars)
+2026-05-23 07:38:05 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 07:38:05 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 07:38:18 [INFO] api: Generate request — sections: [6]
+2026-05-23 07:38:18 [ERROR] api: Question generation failed: column s.pdf_name does not exist
+LINE 3:                    s.total_questions, s.pdf_name
+                                              ^
+
+2026-05-23 07:39:40 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 07:39:47 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 07:39:47 [INFO] pdf_parser: Found 10 sections in PDF
+2026-05-23 07:39:47 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 07:39:47 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 07:39:47 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 07:39:47 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 07:39:47 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 07:39:47 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 07:39:47 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 07:39:47 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (5326 chars)
+2026-05-23 07:39:47 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 07:39:47 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 07:39:53 [INFO] api: Generate request — sections: [6]
+2026-05-23 07:39:53 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 07:40:00 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 07:40:00 [INFO] pdf_parser: Found 10 sections in PDF
+2026-05-23 07:40:00 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 07:40:00 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 07:40:00 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 07:40:00 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 07:40:00 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 07:40:00 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 07:40:00 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 07:40:00 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (5326 chars)
+2026-05-23 07:40:00 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 07:40:00 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 07:40:00 [INFO] database_pg: Created PostgreSQL session ID: 6 for PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 07:40:00 [INFO] llm: Generating 5 MCQs for section 6 (adaptive=yes)
+2026-05-23 07:40:52 [DEBUG] rag: Retrieved 6 chunks for query: What is the role of Lt. Solène Bauer-Cortez in Cel...
+2026-05-23 07:40:52 [INFO] llm: RAG retrieved context for sections [6]
+2026-05-23 07:40:54 [DEBUG] llm: LLM raw response length: 2140 chars
+2026-05-23 07:40:54 [INFO] llm: Successfully parsed 5 questions for section 6
+2026-05-23 07:40:54 [INFO] api: Generated 5 questions — session 6
+2026-05-23 07:41:15 [INFO] api: Submit request — session 6
+2026-05-23 07:41:16 [INFO] api: Session 6 scored — 1/5 (20%)
+2026-05-23 07:42:03 [INFO] api: PDF uploaded: uploaded_uploaded_BLACKTIDE_PROPER_DOSSIER.pdf
+2026-05-23 07:42:03 [INFO] pdf_parser: Loading PDF: uploaded_uploaded_BLACKTIDE_PROPER_DOSSIER.pdf
+2026-05-23 07:42:03 [DEBUG] pdf_parser: PDF loaded — 5331 characters total
+2026-05-23 07:42:03 [INFO] pdf_parser: Found 8 sections in PDF
+2026-05-23 07:42:03 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (1071 chars)
+2026-05-23 07:42:03 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (738 chars)
+2026-05-23 07:42:03 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (789 chars)
+2026-05-23 07:42:03 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (359 chars)
+2026-05-23 07:42:03 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (470 chars)
+2026-05-23 07:42:03 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (375 chars)
+2026-05-23 07:42:03 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (361 chars)
+2026-05-23 07:42:03 [DEBUG] pdf_parser: Section 8: Current Operational Status (375 chars)
+2026-05-23 07:42:03 [INFO] rag: Force reindexing ChromaDB — clearing existing collection...
+2026-05-23 07:42:03 [INFO] rag: Existing collection deleted.
+2026-05-23 07:42:04 [INFO] rag: Indexing new PDF into ChromaDB...
+2026-05-23 07:42:04 [INFO] rag: Section 1: 3 chunks
+2026-05-23 07:42:04 [INFO] rag: Section 2: 2 chunks
+2026-05-23 07:42:04 [INFO] rag: Section 3: 2 chunks
+2026-05-23 07:42:04 [INFO] rag: Section 4: 1 chunks
+2026-05-23 07:42:04 [INFO] rag: Section 5: 2 chunks
+2026-05-23 07:42:04 [INFO] rag: Section 6: 1 chunks
+2026-05-23 07:42:04 [INFO] rag: Section 7: 1 chunks
+2026-05-23 07:42:04 [INFO] rag: Section 8: 1 chunks
+2026-05-23 07:42:05 [INFO] rag: Indexed batch 1
+2026-05-23 07:42:05 [INFO] rag: Reindexing complete — 13 chunks stored in ChromaDB
+2026-05-23 07:42:05 [INFO] api: PDF processed — 8 sections, ChromaDB reindexed
+2026-05-23 07:42:11 [INFO] api: Generate request — sections: [1]
+2026-05-23 07:42:11 [INFO] pdf_parser: Loading PDF: uploaded_uploaded_BLACKTIDE_PROPER_DOSSIER.pdf
+2026-05-23 07:42:11 [DEBUG] pdf_parser: PDF loaded — 5331 characters total
+2026-05-23 07:42:11 [INFO] pdf_parser: Found 8 sections in PDF
+2026-05-23 07:42:11 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (1071 chars)
+2026-05-23 07:42:11 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (738 chars)
+2026-05-23 07:42:11 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (789 chars)
+2026-05-23 07:42:11 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (359 chars)
+2026-05-23 07:42:11 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (470 chars)
+2026-05-23 07:42:11 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (375 chars)
+2026-05-23 07:42:11 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (361 chars)
+2026-05-23 07:42:11 [DEBUG] pdf_parser: Section 8: Current Operational Status (375 chars)
+2026-05-23 07:42:11 [INFO] database_pg: Created PostgreSQL session ID: 7 for PDF: uploaded_uploaded_BLACKTIDE_PROPER_DOSSIER.pdf
+2026-05-23 07:42:11 [INFO] llm: Generating 5 MCQs for section 1 (adaptive=yes)
+2026-05-23 07:42:11 [DEBUG] rag: Retrieved 3 chunks for query: How many named cross-border deployments did Calvac...
+2026-05-23 07:42:11 [INFO] llm: RAG retrieved context for sections [1]
+2026-05-23 07:42:13 [DEBUG] llm: LLM raw response length: 2956 chars
+2026-05-23 07:42:13 [INFO] llm: Successfully parsed 5 questions for section 1
+2026-05-23 07:42:13 [INFO] api: Generated 5 questions — session 7
+2026-05-23 07:42:19 [INFO] api: Submit request — session 7
+2026-05-23 07:42:19 [INFO] api: Session 7 scored — 0/5 (0%)
+2026-05-23 08:04:57 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 08:05:04 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 08:05:04 [INFO] pdf_parser: Found 11 sections in PDF
+2026-05-23 08:05:04 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 08:05:04 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 08:05:04 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 08:05:04 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 08:05:04 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 08:05:04 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 08:05:04 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 08:05:04 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (1958 chars)
+2026-05-23 08:05:04 [DEBUG] pdf_parser: Section 6: baton-cache replacement set (3367 chars)
+2026-05-23 08:05:04 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 08:05:04 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 08:05:09 [INFO] api: Generate request — sections: [1]
+2026-05-23 08:05:09 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 08:05:16 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 08:05:16 [INFO] pdf_parser: Found 11 sections in PDF
+2026-05-23 08:05:16 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 08:05:16 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 08:05:16 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 08:05:16 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 08:05:16 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 08:05:16 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 08:05:16 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 08:05:16 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (1958 chars)
+2026-05-23 08:05:16 [DEBUG] pdf_parser: Section 6: baton-cache replacement set (3367 chars)
+2026-05-23 08:05:16 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 08:05:16 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 08:05:16 [INFO] database_pg: Created PostgreSQL session ID: 8 for PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 08:05:16 [INFO] llm: Generating 5 MCQs for section 1 (adaptive=yes)
+2026-05-23 08:05:52 [DEBUG] rag: Retrieved 3 chunks for query: How many named cross-border deployments did Calvac...
+2026-05-23 08:05:52 [INFO] llm: RAG retrieved context for sections [1]
+2026-05-23 08:05:54 [DEBUG] llm: LLM raw response length: 3080 chars
+2026-05-23 08:05:54 [INFO] llm: Successfully parsed 5 questions for section 1
+2026-05-23 08:05:54 [INFO] api: Generated 5 questions — session 8
+2026-05-23 08:25:30 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 08:25:37 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 08:25:37 [INFO] pdf_parser: Found 11 sections in PDF
+2026-05-23 08:25:37 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 08:25:37 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 08:25:37 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 08:25:37 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 08:25:37 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 08:25:37 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 08:25:37 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 08:25:37 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (1958 chars)
+2026-05-23 08:25:37 [DEBUG] pdf_parser: Section 6: baton-cache replacement set (3367 chars)
+2026-05-23 08:25:37 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 08:25:37 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 08:33:45 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 08:33:52 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 08:33:52 [INFO] pdf_parser: Found 11 sections in PDF
+2026-05-23 08:33:52 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 08:33:52 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 08:33:52 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 08:33:52 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 08:33:52 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 08:33:52 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 08:33:52 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 08:33:52 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (1958 chars)
+2026-05-23 08:33:52 [DEBUG] pdf_parser: Section 6: baton-cache replacement set (3367 chars)
+2026-05-23 08:33:52 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 08:33:52 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 08:47:41 [INFO] api: Generate request — sections: [1]
+2026-05-23 08:47:41 [INFO] pdf_parser: Loading PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 08:47:48 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 08:47:48 [INFO] pdf_parser: Found 11 sections in PDF
+2026-05-23 08:47:48 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 08:47:48 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 08:47:48 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 08:47:48 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 08:47:48 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 08:47:48 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 08:47:48 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 08:47:48 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (1958 chars)
+2026-05-23 08:47:48 [DEBUG] pdf_parser: Section 6: baton-cache replacement set (3367 chars)
+2026-05-23 08:47:48 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 08:47:48 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 08:47:48 [INFO] database_pg: Created PostgreSQL session ID: 9 for PDF: SLATEFALL_DOSSIER.pdf
+2026-05-23 08:47:48 [INFO] llm: Generating 5 MCQs for section 1 (adaptive=yes)
+2026-05-23 08:48:40 [DEBUG] rag: Retrieved 3 chunks for query: How many named cross-border deployments did Calvac...
+2026-05-23 08:48:40 [INFO] llm: RAG retrieved context for sections [1]
+2026-05-23 08:48:42 [DEBUG] llm: LLM raw response length: 3118 chars
+2026-05-23 08:48:42 [INFO] llm: Successfully parsed 5 questions for section 1
+2026-05-23 08:48:42 [INFO] api: Generated 5 questions — session 9
+2026-05-23 08:51:22 [INFO] api: Submit request — session 9
+2026-05-23 08:51:22 [INFO] api: Session 9 scored — 0/5 (0%)
+2026-05-23 08:52:07 [INFO] api: PDF uploaded: uploaded_uploaded_BLACKTIDE_PROPER_DOSSIER.pdf
+2026-05-23 08:52:07 [INFO] pdf_parser: Loading PDF: uploaded_uploaded_BLACKTIDE_PROPER_DOSSIER.pdf
+2026-05-23 08:52:07 [DEBUG] pdf_parser: PDF loaded — 5331 characters total
+2026-05-23 08:52:07 [INFO] pdf_parser: Found 8 sections in PDF
+2026-05-23 08:52:07 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (1071 chars)
+2026-05-23 08:52:07 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (738 chars)
+2026-05-23 08:52:07 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (789 chars)
+2026-05-23 08:52:07 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (359 chars)
+2026-05-23 08:52:07 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (470 chars)
+2026-05-23 08:52:07 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (375 chars)
+2026-05-23 08:52:07 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (361 chars)
+2026-05-23 08:52:07 [DEBUG] pdf_parser: Section 8: Current Operational Status (375 chars)
+2026-05-23 08:52:07 [INFO] rag: Force reindexing ChromaDB — clearing existing collection...
+2026-05-23 08:52:07 [INFO] rag: Existing collection deleted.
+2026-05-23 08:52:07 [INFO] rag: Indexing new PDF into ChromaDB...
+2026-05-23 08:52:07 [INFO] rag: Section 1: 3 chunks
+2026-05-23 08:52:07 [INFO] rag: Section 2: 2 chunks
+2026-05-23 08:52:07 [INFO] rag: Section 3: 2 chunks
+2026-05-23 08:52:07 [INFO] rag: Section 4: 1 chunks
+2026-05-23 08:52:07 [INFO] rag: Section 5: 2 chunks
+2026-05-23 08:52:07 [INFO] rag: Section 6: 1 chunks
+2026-05-23 08:52:07 [INFO] rag: Section 7: 1 chunks
+2026-05-23 08:52:07 [INFO] rag: Section 8: 1 chunks
+2026-05-23 08:52:09 [INFO] rag: Indexed batch 1
+2026-05-23 08:52:09 [INFO] rag: Reindexing complete — 13 chunks stored in ChromaDB
+2026-05-23 08:52:09 [INFO] api: PDF processed — 8 sections, ChromaDB reindexed
+2026-05-23 08:52:31 [INFO] api: Generate request — sections: [7]
+2026-05-23 08:52:31 [INFO] pdf_parser: Loading PDF: uploaded_uploaded_BLACKTIDE_PROPER_DOSSIER.pdf
+2026-05-23 08:52:31 [DEBUG] pdf_parser: PDF loaded — 5331 characters total
+2026-05-23 08:52:31 [INFO] pdf_parser: Found 8 sections in PDF
+2026-05-23 08:52:31 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (1071 chars)
+2026-05-23 08:52:31 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (738 chars)
+2026-05-23 08:52:31 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (789 chars)
+2026-05-23 08:52:31 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (359 chars)
+2026-05-23 08:52:31 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (470 chars)
+2026-05-23 08:52:31 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (375 chars)
+2026-05-23 08:52:31 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (361 chars)
+2026-05-23 08:52:31 [DEBUG] pdf_parser: Section 8: Current Operational Status (375 chars)
+2026-05-23 08:52:31 [INFO] database_pg: Created PostgreSQL session ID: 10 for PDF: uploaded_uploaded_BLACKTIDE_PROPER_DOSSIER.pdf
+2026-05-23 08:52:31 [INFO] llm: Generating 5 MCQs for section 7 (adaptive=yes)
+2026-05-23 08:52:31 [DEBUG] rag: Retrieved 1 chunks for query: What is the maximum sustained field duration of co...
+2026-05-23 08:52:31 [INFO] llm: RAG retrieved context for sections [7]
+2026-05-23 08:52:33 [DEBUG] llm: LLM raw response length: 2853 chars
+2026-05-23 08:52:33 [INFO] llm: Successfully parsed 5 questions for section 7
+2026-05-23 08:52:33 [INFO] api: Generated 5 questions — session 10
+2026-05-23 08:52:43 [INFO] api: Submit request — session 10
+2026-05-23 08:52:43 [INFO] api: Session 10 scored — 1/5 (20%)
+2026-05-23 08:53:37 [INFO] pdf_parser: Loading PDF: uploaded_uploaded_BLACKTIDE_PROPER_DOSSIER.pdf
+2026-05-23 08:53:37 [DEBUG] pdf_parser: PDF loaded — 5331 characters total
+2026-05-23 08:53:37 [INFO] pdf_parser: Found 8 sections in PDF
+2026-05-23 08:53:37 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (1071 chars)
+2026-05-23 08:53:37 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (738 chars)
+2026-05-23 08:53:37 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (789 chars)
+2026-05-23 08:53:37 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (359 chars)
+2026-05-23 08:53:37 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (470 chars)
+2026-05-23 08:53:37 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (375 chars)
+2026-05-23 08:53:37 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (361 chars)
+2026-05-23 08:53:37 [DEBUG] pdf_parser: Section 8: Current Operational Status (375 chars)
+2026-05-23 08:53:47 [INFO] api: PDF uploaded: uploaded_SLATEFALL_DOSSIER.pdf
+2026-05-23 08:53:47 [INFO] pdf_parser: Loading PDF: uploaded_SLATEFALL_DOSSIER.pdf
+2026-05-23 08:53:53 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 08:53:54 [INFO] pdf_parser: Found 11 sections in PDF
+2026-05-23 08:53:54 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 08:53:54 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 08:53:54 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 08:53:54 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 08:53:54 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 08:53:54 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 08:53:54 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 08:53:54 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (1958 chars)
+2026-05-23 08:53:54 [DEBUG] pdf_parser: Section 6: baton-cache replacement set (3367 chars)
+2026-05-23 08:53:54 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 08:53:54 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 08:53:54 [INFO] rag: Force reindexing ChromaDB — clearing existing collection...
+2026-05-23 08:53:54 [INFO] rag: Existing collection deleted.
+2026-05-23 08:53:54 [INFO] rag: Indexing new PDF into ChromaDB...
+2026-05-23 08:53:54 [INFO] rag: Section 1: 16 chunks
+2026-05-23 08:53:54 [INFO] rag: Section 2: 41 chunks
+2026-05-23 08:53:54 [INFO] rag: Section 3: 25 chunks
+2026-05-23 08:53:54 [INFO] rag: Section 4: 29 chunks
+2026-05-23 08:53:54 [INFO] rag: Section 5: 19 chunks
+2026-05-23 08:53:54 [INFO] rag: Section 6: 9 chunks
+2026-05-23 08:53:54 [INFO] rag: Section 7: 37 chunks
+2026-05-23 08:53:54 [INFO] rag: Section 8: 5 chunks
+2026-05-23 08:53:54 [INFO] rag: Section 9: 21 chunks
+2026-05-23 08:53:54 [INFO] rag: Section 10: 31 chunks
+2026-05-23 08:53:56 [INFO] rag: Indexed batch 1
+2026-05-23 08:53:58 [INFO] rag: Indexed batch 2
+2026-05-23 08:53:59 [INFO] rag: Indexed batch 3
+2026-05-23 08:54:01 [INFO] rag: Indexed batch 4
+2026-05-23 08:54:02 [INFO] rag: Indexed batch 5
+2026-05-23 08:54:02 [INFO] rag: Reindexing complete — 233 chunks stored in ChromaDB
+2026-05-23 08:54:02 [INFO] api: PDF processed — 10 sections, ChromaDB reindexed
+2026-05-23 09:00:37 [INFO] pdf_parser: Loading PDF: uploaded_SLATEFALL_DOSSIER.pdf
+2026-05-23 09:00:44 [DEBUG] pdf_parser: PDF loaded — 100394 characters total
+2026-05-23 09:00:44 [INFO] pdf_parser: Found 11 sections in PDF
+2026-05-23 09:00:44 [DEBUG] pdf_parser: Section 1: Identity, Background, and Public Status (6137 chars)
+2026-05-23 09:00:44 [DEBUG] pdf_parser: Section 2: Powers, Abilities, and Documented Limits (16154 chars)
+2026-05-23 09:00:44 [DEBUG] pdf_parser: Section 3: Origin and Key Historical Events (9852 chars)
+2026-05-23 09:00:44 [DEBUG] pdf_parser: Section 4: Equipment, Gear, and Specialized Technology (11566 chars)
+2026-05-23 09:00:44 [DEBUG] pdf_parser: Section 5: Operational Tactics and Combat Doctrine (7339 chars)
+2026-05-23 09:00:44 [DEBUG] pdf_parser: Section 6: Allies, Networks, and Known Affiliations (8593 chars)
+2026-05-23 09:00:44 [DEBUG] pdf_parser: Section 7: Adversaries and Documented Threats (14424 chars)
+2026-05-23 09:00:44 [DEBUG] pdf_parser: Section 8: Known Bases, Safehouses, and Operational Territory (1958 chars)
+2026-05-23 09:00:44 [DEBUG] pdf_parser: Section 6: baton-cache replacement set (3367 chars)
+2026-05-23 09:00:44 [DEBUG] pdf_parser: Section 9: Case Files: Documented Engagements and Incidents (8056 chars)
+2026-05-23 09:00:44 [DEBUG] pdf_parser: Section 10: Glossary, Codenames, and Reference Tables (12147 chars)
+2026-05-23 09:02:16 [INFO] pdf_parser: Loading PDF: uploaded_SLATEFALL_DOSSIER.pdf

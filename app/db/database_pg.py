@@ -40,8 +40,14 @@ def init_pg_db():
                 section_ids TEXT NOT NULL,
                 created_at TEXT NOT NULL,
                 score INTEGER DEFAULT 0,
-                total_questions INTEGER DEFAULT 0
+                total_questions INTEGER DEFAULT 0,
+                pdf_name TEXT DEFAULT 'SLATEFALL_DOSSIER.pdf'
             )
+        """)
+        # Add pdf_name column if it doesn't exist (for existing DBs)
+        cursor.execute("""
+            ALTER TABLE sessions ADD COLUMN IF NOT EXISTS
+            pdf_name TEXT DEFAULT 'SLATEFALL_DOSSIER.pdf'
         """)
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS questions (
@@ -66,17 +72,17 @@ def init_pg_db():
         return False
 
 
-def create_session_pg(section_ids: list[int]) -> int:
+def create_session_pg(section_ids: list[int], pdf_name: str = "SLATEFALL_DOSSIER.pdf") -> int:
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
-        INSERT INTO sessions (section_ids, created_at)
-        VALUES (%s, %s) RETURNING id
-    """, (json.dumps(section_ids), datetime.now().isoformat()))
+        INSERT INTO sessions (section_ids, created_at, pdf_name)
+        VALUES (%s, %s, %s) RETURNING id
+    """, (json.dumps(section_ids), datetime.now().isoformat(), pdf_name))
     session_id = cursor.fetchone()[0]
     conn.commit()
     conn.close()
-    logger.info(f"Created PostgreSQL session ID: {session_id}")
+    logger.info(f"Created PostgreSQL session ID: {session_id} for PDF: {pdf_name}")
     return session_id
 
 
@@ -153,7 +159,8 @@ def get_prior_sessions_pg(section_ids: list[int]) -> list[dict]:
     results = []
     for section_id in section_ids:
         cursor.execute("""
-            SELECT s.id, s.section_ids, s.created_at, s.score, s.total_questions
+            SELECT s.id, s.section_ids, s.created_at, s.score,
+                   s.total_questions, s.pdf_name
             FROM sessions s
             JOIN questions q ON q.session_id = s.id
             WHERE q.section_id = %s
@@ -191,3 +198,17 @@ def get_kb_snapshot_pg() -> list[dict]:
         session["questions"] = questions
     conn.close()
     return sessions
+
+
+def get_all_sessions_pg() -> list[dict]:
+    """Get all sessions grouped by PDF name."""
+    conn = get_connection()
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cursor.execute("""
+        SELECT id, section_ids, created_at, score, total_questions, pdf_name
+        FROM sessions
+        ORDER BY created_at DESC
+    """)
+    rows = cursor.fetchall()
+    conn.close()
+    return [dict(row) for row in rows]
