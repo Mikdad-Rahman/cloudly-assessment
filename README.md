@@ -1,4 +1,5 @@
 # Adaptive Document Preparation System
+
 ### Cloudly AI/ML Intern Assessment — Syeed Mikdad Rahman
 
 ---
@@ -15,18 +16,18 @@ RAG (Retrieval Augmented Generation) powers context retrieval — the entire dos
 
 ## Stack Choices & Reasoning
 
-| Component | Choice | Reason |
-|-----------|--------|--------|
-| Backend | FastAPI | Async, auto-docs, clean Pydantic validation |
-| LLM | Groq (llama-3.3-70b-versatile) | Free tier, fast inference, strong instruction following |
-| PDF Parsing | PyMuPDF (fitz) | Reliable text extraction, handles complex layouts |
-| RAG / Vector Store | ChromaDB + sentence-transformers | Local vector search, no API needed, persistent |
-| Database | PostgreSQL + pgAdmin | Production-grade, supports all required KB query patterns |
-| Orchestration | Raw API calls | Keeps flow transparent and easy to follow |
-| UI (Primary) | HTML/JS + nginx | Lightweight, Docker-native, instant load |
-| UI (Secondary) | Streamlit | Python-based interactive UI, runs locally |
-| Containerization | Docker + docker-compose | Single command full stack setup |
-| Logging | colorlog | Colored structured terminal + file logs |
+| Component          | Choice                           | Reason                                                                           |
+| ------------------ | -------------------------------- | -------------------------------------------------------------------------------- |
+| Backend            | FastAPI                          | Async, auto-docs, clean Pydantic validation                                      |
+| LLM                | Groq (llama-3.3-70b-versatile)   | Free tier, fast inference, strong instruction following                          |
+| PDF Parsing        | PyMuPDF (fitz)                   | Reliable text extraction, handles complex layouts                                |
+| RAG / Vector Store | ChromaDB + sentence-transformers | Local vector search, no API needed, persistent                                   |
+| Database           | PostgreSQL + pgAdmin             | Production-grade, supports all required KB query patterns                        |
+| Orchestration      | Raw API calls                    | Keeps flow transparent and easy to follow                                        |
+| UI (Primary)       | HTML/JS + nginx                  | Lightweight, Docker-native, instant load                                         |
+| UI (Legacy)        | Streamlit                        | Original prototype — replaced due to Docker startup timing issue on Windows/WSL2 |
+| Containerization   | Docker + docker-compose          | Single command full stack setup                                                  |
+| Logging            | colorlog                         | Colored structured terminal + file logs                                          |
 
 ---
 
@@ -100,12 +101,12 @@ Wait for all containers to start (first build takes ~3-5 minutes due to model do
 
 ### Step 4 — Access the services
 
-| Service | URL | Credentials |
-|---------|-----|-------------|
-| HTML/JS UI | http://localhost:3001 | — |
-| FastAPI Docs | http://localhost:8000/docs | — |
-| pgAdmin | http://localhost:5050 | admin@cloudly.io / admin123 |
-| PostgreSQL | localhost:5432 | cloudly / cloudly123 |
+| Service      | URL                        | Credentials                 |
+| ------------ | -------------------------- | --------------------------- |
+| HTML/JS UI   | http://localhost:3001      | —                           |
+| FastAPI Docs | http://localhost:8000/docs | —                           |
+| pgAdmin      | http://localhost:5050      | admin@cloudly.io / admin123 |
+| PostgreSQL   | localhost:5432             | cloudly / cloudly123        |
 
 ### Step 5 — Connect pgAdmin to PostgreSQL (optional, for DB inspection)
 
@@ -131,12 +132,15 @@ docker-compose down
 ## UI Options
 
 ### HTML/JS UI v2.0 (Docker — Recommended)
+
 Lightweight, Docker-native UI served by nginx. Instant load, calls FastAPI directly via REST.
+
 ```
 http://localhost:3001
 ```
 
 Features:
+
 - Upload any PDF and auto-index it
 - Select sections and start a prep session
 - Answer MCQs interactively
@@ -144,15 +148,25 @@ Features:
 - Browse history grouped by PDF document
 - KB Snapshot with expandable session details
 
-### Streamlit UI (Local)
-Python-based interactive UI. Run locally while Docker services are running.
+### Streamlit UI (Legacy — Local Only)
 
-```bash
+`streamlit_app.py` is kept in the repository as evidence of the first UI implementation. During development, Streamlit was the original UI choice but a startup timing issue was discovered — ChromaDB initialization inside Docker on Windows/WSL2 caused the container to hang indefinitely on the blank loading screen. This led to the decision to build the HTML/JS UI as a proper Docker-native replacement.
+
+If you want to view the original Streamlit UI, run it locally while Docker services are running:
+
+\```bash
+
+# Make sure postgres is running first
+
+docker-compose up -d postgres
+
+# Then run Streamlit locally
+
 streamlit run streamlit_app.py
-```
+\```
 Open http://localhost:8501
 
-> Note: Streamlit has a startup timing issue with ChromaDB inside Docker on Windows/WSL2. Use the HTML/JS UI at http://localhost:3001 for Docker deployments.
+> ℹ️ The Streamlit UI is **not part of the Docker stack** and is not required to run the system. The HTML/JS UI at http://localhost:3001 is the primary interface.
 
 ---
 
@@ -201,24 +215,29 @@ Place `SLATEFALL_DOSSIER.pdf` in the project root directory.
 ## Running the System
 
 ### Interactive CLI session
+
 ```bash
 python main.py --sections 1 2
 ```
 
 ### Simulated answers (for evaluation)
+
 ```bash
 python main.py --sections 1 2 --simulate
 ```
 
 ### Save outputs to folder
+
 ```bash
 python main.py --sections 1 2 --simulate --output-dir outputs/my_session
 ```
 
 ### Start REST API server
+
 ```bash
 python main.py --serve
 ```
+
 Open http://localhost:8000/docs for interactive API documentation.
 
 ---
@@ -240,21 +259,25 @@ This runs a fresh prep session over sections 3 and 7 with no prior history. Ques
 Run these commands in order. Each builds on the history of the previous.
 
 **Iteration 1 — Sections 5, 8 (cold start):**
+
 ```bash
 python main.py --sections 5 8 --simulate --output-dir outputs/scenario_b_iter1
 ```
 
 **Iteration 2 — Sections 6, 8, 9 (section 8 is a returning section):**
+
 ```bash
 python main.py --sections 6 8 9 --simulate --output-dir outputs/scenario_b_iter2
 ```
 
 **Iteration 3 — Section 8 only (maximum adaptive focus):**
+
 ```bash
 python main.py --sections 8 --simulate --output-dir outputs/scenario_b_iter3
 ```
 
 **Output files generated:**
+
 ```
 outputs/
 ├── scenario_b_iter1/
@@ -269,6 +292,7 @@ outputs/
 ```
 
 **Why adaptive behavior is visible across iterations:**
+
 - **Iter 1** — Sections 5 and 8 studied cold. No prior history. Fresh questions generated from PDF content via RAG.
 - **Iter 2** — Section 8 is a returning section. Weak areas from Iter 1 are detected in the KB. RAG query is built from wrong-answer topics. LLM prompt is injected with weak area context. Questions refocus on previously missed topics.
 - **Iter 3** — Section 8 studied again. Weak areas from both Iter 1 and Iter 2 compound. The system drills the consistently wrong topics harder from different angles, avoiding repetition of already-mastered questions.
@@ -277,19 +301,19 @@ outputs/
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | / | Health check |
-| GET | /pdf-info | Get current PDF filename and display name |
-| GET | /sections | List all sections in the current PDF |
-| POST | /upload-pdf | Upload a new PDF, re-parse and re-index ChromaDB |
-| POST | /prep | Run a full prep session (CLI/simulate mode) |
-| POST | /generate | Generate questions for UI (interactive, no answers) |
-| POST | /submit | Submit answers, score and save to DB |
-| GET | /history/{section_id} | Get prior sessions for a section with questions |
-| GET | /all-sessions | Get all sessions grouped by PDF name |
-| GET | /weak-areas?section_ids=1,2 | Get weak areas for sections |
-| GET | /kb-snapshot | Get last 5 sessions snapshot with questions |
+| Method | Endpoint                    | Description                                         |
+| ------ | --------------------------- | --------------------------------------------------- |
+| GET    | /                           | Health check                                        |
+| GET    | /pdf-info                   | Get current PDF filename and display name           |
+| GET    | /sections                   | List all sections in the current PDF                |
+| POST   | /upload-pdf                 | Upload a new PDF, re-parse and re-index ChromaDB    |
+| POST   | /prep                       | Run a full prep session (CLI/simulate mode)         |
+| POST   | /generate                   | Generate questions for UI (interactive, no answers) |
+| POST   | /submit                     | Submit answers, score and save to DB                |
+| GET    | /history/{section_id}       | Get prior sessions for a section with questions     |
+| GET    | /all-sessions               | Get all sessions grouped by PDF name                |
+| GET    | /weak-areas?section_ids=1,2 | Get weak areas for sections                         |
+| GET    | /kb-snapshot                | Get last 5 sessions snapshot with questions         |
 
 ---
 
@@ -297,29 +321,29 @@ outputs/
 
 ### sessions table
 
-| Column | Type | Description |
-|--------|------|-------------|
-| id | SERIAL PK | Unique session ID |
-| section_ids | TEXT | JSON array of studied section IDs |
-| created_at | TEXT | ISO timestamp |
-| score | INTEGER | Correct answer count |
-| total_questions | INTEGER | Total questions in session |
-| pdf_name | TEXT | Source PDF filename |
+| Column          | Type      | Description                       |
+| --------------- | --------- | --------------------------------- |
+| id              | SERIAL PK | Unique session ID                 |
+| section_ids     | TEXT      | JSON array of studied section IDs |
+| created_at      | TEXT      | ISO timestamp                     |
+| score           | INTEGER   | Correct answer count              |
+| total_questions | INTEGER   | Total questions in session        |
+| pdf_name        | TEXT      | Source PDF filename               |
 
 ### questions table
 
-| Column | Type | Description |
-|--------|------|-------------|
-| id | SERIAL PK | Unique question ID |
-| session_id | INTEGER FK | Links to sessions.id |
-| section_id | INTEGER | Source section number |
-| question_text | TEXT | The MCQ question |
-| options | TEXT | JSON object of A/B/C/D options |
-| correct_answer | TEXT | Correct letter (A/B/C/D) |
-| explanation | TEXT | Why the answer is correct |
-| user_answer | TEXT | What the user answered |
-| is_correct | INTEGER | 0 or 1 |
-| created_at | TEXT | ISO timestamp |
+| Column         | Type       | Description                    |
+| -------------- | ---------- | ------------------------------ |
+| id             | SERIAL PK  | Unique question ID             |
+| session_id     | INTEGER FK | Links to sessions.id           |
+| section_id     | INTEGER    | Source section number          |
+| question_text  | TEXT       | The MCQ question               |
+| options        | TEXT       | JSON object of A/B/C/D options |
+| correct_answer | TEXT       | Correct letter (A/B/C/D)       |
+| explanation    | TEXT       | Why the answer is correct      |
+| user_answer    | TEXT       | What the user answered         |
+| is_correct     | INTEGER    | 0 or 1                         |
+| created_at     | TEXT       | ISO timestamp                  |
 
 ### KB Query Patterns Supported
 
@@ -395,15 +419,15 @@ cloudly_assessment/
 
 ## Optional Enhancements Implemented
 
-| Enhancement | Status | Details |
-|-------------|--------|---------|
-| Containerization | ✅ | Docker + docker-compose, full stack with one command |
-| Minimal UI | ✅ | HTML/JS UI v2.0 (Docker) + Streamlit (local) |
-| Error Handling | ✅ | LLM failures, invalid section IDs, PDF parse errors, DB connection timeouts |
-| Logging | ✅ | colorlog with timestamps, session IDs, structured log files |
-| PDF Upload | ✅ | Upload any PDF, auto re-parse and re-index ChromaDB |
-| PDF Tracking | ✅ | Sessions track which PDF they came from |
-| pgAdmin | ✅ | Visual DB management at http://localhost:5050 |
+| Enhancement      | Status | Details                                                                     |
+| ---------------- | ------ | --------------------------------------------------------------------------- |
+| Containerization | ✅     | Docker + docker-compose, full stack with one command                        |
+| Minimal UI       | ✅     | HTML/JS UI v2.0 (Docker) + Streamlit (local)                                |
+| Error Handling   | ✅     | LLM failures, invalid section IDs, PDF parse errors, DB connection timeouts |
+| Logging          | ✅     | colorlog with timestamps, session IDs, structured log files                 |
+| PDF Upload       | ✅     | Upload any PDF, auto re-parse and re-index ChromaDB                         |
+| PDF Tracking     | ✅     | Sessions track which PDF they came from                                     |
+| pgAdmin          | ✅     | Visual DB management at http://localhost:5050                               |
 
 ---
 

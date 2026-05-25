@@ -1,7 +1,6 @@
 version: "3.9"
 
 services:
-
   postgres:
     image: postgres:15
     container_name: cloudly_postgres
@@ -54,32 +53,6 @@ services:
     volumes:
       - ./ui:/usr/share/nginx/html:ro
     depends_on:
-      - api
-    restart: unless-stopped
-
-  streamlit:
-    build: .
-    container_name: cloudly_ui
-    ports:
-      - "8501:8501"
-    volumes:
-      - .:/app
-    environment:
-      - GROQ_API_KEY=${GROQ_API_KEY}
-      - PG_HOST=postgres
-      - PG_PORT=5432
-      - PG_DB=cloudly
-      - PG_USER=cloudly
-      - PG_PASSWORD=cloudly123
-    command: >
-      sh -c "sleep 15 &&
-      streamlit run streamlit_app.py
-      --server.port 8501
-      --server.address 0.0.0.0
-      --server.headless true
-      --browser.gatherUsageStats false"
-    depends_on:
-      - postgres
       - api
     restart: unless-stopped
 

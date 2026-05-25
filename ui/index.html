@@ -83,17 +83,12 @@
   .home-section-item:last-child { border-bottom: none; }
   .home-section-num { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--accent); min-width: 70px; }
   .home-section-title { font-size: 14px; font-weight: 600; }
-
-  /* PDF GROUP */
   .pdf-group { margin-bottom: 20px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
   .pdf-group-header { padding: 16px 20px; background: var(--bg3); display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.15s; }
   .pdf-group-header:hover { background: var(--bg2); }
   .pdf-group-name { font-size: 15px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 10px; }
-  .pdf-group-name .pdf-icon { font-size: 16px; }
   .pdf-group-meta { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text2); margin-top: 3px; }
   .pdf-group-sessions { display: none; padding: 12px; background: var(--bg); }
-
-  /* SESSION */
   .history-session { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; overflow: hidden; }
   .history-header { padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background 0.15s; }
   .history-header:hover { background: var(--bg3); }
@@ -102,9 +97,8 @@
   .session-questions { display: none; padding: 0 18px 18px; border-top: 1px solid var(--border); }
   .session-question-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
   .session-question-item:last-child { border-bottom: none; }
-
   .divider { height: 1px; background: var(--border); margin: 24px 0; }
-  .flex { display: flex; } .gap-12 { gap: 12px; } .mt-24 { margin-top: 24px; }
+  .flex { display: flex; } .gap-12 { gap: 12px; }
   .selected-count { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--text2); margin-bottom: 16px; }
   .selected-count span { color: var(--accent); font-weight: 700; }
   .submit-bar { position: sticky; bottom: 0; background: var(--bg2); border-top: 1px solid var(--border); padding: 16px 40px; display: flex; align-items: center; gap: 16px; margin: 0 -40px -40px; }
@@ -118,6 +112,7 @@
   .upload-hint { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text2); }
   .current-pdf { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: rgba(0,255,136,0.05); border: 1px solid rgba(0,255,136,0.2); border-radius: var(--radius); margin-bottom: 16px; font-size: 13px; }
   .current-pdf-label { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 2px; margin-right: 4px; }
+  .simulate-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,170,0,0.1); border: 1px solid rgba(255,170,0,0.3); color: var(--warn); font-family: 'Space Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 4px; margin-left: 8px; }
 </style>
 </head>
 <body>
@@ -168,7 +163,7 @@
       <div style="font-size:13px;color:var(--text2);line-height:1.9">
         <strong style="color:var(--text)">How it works:</strong><br>
         1. Go to <strong style="color:var(--accent)">Prep Session</strong> and select sections to study<br>
-        2. Answer AI-generated MCQs from the document<br>
+        2. Answer MCQs manually or use <strong style="color:var(--warn)">⚡ Auto Simulate</strong> to auto-fill answers<br>
         3. Get scored with explanations for wrong answers<br>
         4. On return visits, RAG + adaptive intelligence focuses on your weak areas
       </div>
@@ -211,7 +206,8 @@ const API = 'http://localhost:8000';
 
 const state = {
   sections: {}, selected: [], questions: [], answers: {},
-  sessionId: null, scored: null, isAdaptive: false, weakAreas: [], phase: 'select'
+  sessionId: null, scored: null, isAdaptive: false, weakAreas: [],
+  phase: 'select', simulate: false
 };
 
 const pages = ['home','prep','history','kb'];
@@ -354,7 +350,7 @@ function buildSessionCard(s, prefix) {
   `;
 }
 
-// ── HISTORY — PDF FIRST ────────────────────────────────
+// ── HISTORY ───────────────────────────────────────────
 
 async function loadAllHistory() {
   const el = document.getElementById('historyContent');
@@ -379,7 +375,7 @@ async function loadAllHistory() {
           <div class="pdf-group">
             <div class="pdf-group-header" onclick="toggleEl('${pgid}','parrow-${pi}')">
               <div>
-                <div class="pdf-group-name"><span class="pdf-icon">📄</span>${pdf}</div>
+                <div class="pdf-group-name"><span>📄</span>${pdf}</div>
                 <div class="pdf-group-meta">${totalSessions} session(s) · Avg score: ${avgPct}%</div>
               </div>
               <span id="parrow-${pi}" style="color:var(--text2);font-size:11px;font-family:'Space Mono',monospace">▼</span>
@@ -395,7 +391,7 @@ async function loadAllHistory() {
   }
 }
 
-// ── KB SNAPSHOT ──────────────────────────────────────
+// ── KB SNAPSHOT ───────────────────────────────────────
 
 async function loadKBSnapshot() {
   const el = document.getElementById('kbContent');
@@ -430,7 +426,7 @@ function renderSelect(el) {
     <div class="page-header">
       <div class="tag">Prep Session</div>
       <h2>Select Sections</h2>
-      <p>Choose sections from the document to study.</p>
+      <p>Choose sections to study. Use <strong style="color:var(--warn)">⚡ Auto Simulate</strong> to auto-fill answers for evaluation.</p>
     </div>
     <div class="selected-count">Selected: <span>${count}</span> section${count !== 1 ? 's' : ''}</div>
     <div class="sections-grid">
@@ -442,7 +438,8 @@ function renderSelect(el) {
       `).join('')}
     </div>
     <div class="flex gap-12">
-      <button class="btn btn-primary" onclick="startSession()" ${count === 0 ? 'disabled' : ''}>▶ Start Prep Session</button>
+      <button class="btn btn-primary" onclick="startSession(false)" ${count === 0 ? 'disabled' : ''}>▶ Start Prep Session</button>
+      <button class="btn btn-secondary" onclick="startSession(true)" ${count === 0 ? 'disabled' : ''} style="border-color:rgba(255,170,0,0.4);color:var(--warn)">⚡ Auto Simulate</button>
       <button class="btn btn-secondary" onclick="state.selected=[];renderPrepPage()">Clear</button>
     </div>
   `;
@@ -456,13 +453,33 @@ function toggleSection2(id) {
   renderPrepPage();
 }
 
-async function startSession() {
-  state.phase = 'loading'; renderPrepPage();
+async function startSession(simulate) {
+  state.phase = 'loading';
+  state.simulate = simulate;
+  renderPrepPage();
   try {
     const data = await apiFetch('/generate', { method: 'POST', body: JSON.stringify({ section_ids: state.selected }) });
-    state.questions = data.questions; state.sessionId = data.session_id;
-    state.isAdaptive = data.is_adaptive; state.weakAreas = data.weak_areas || [];
-    state.answers = {}; state.phase = 'questions';
+
+    state.questions  = data.questions;
+    state.sessionId  = data.session_id;
+    state.isAdaptive = data.is_adaptive;
+    state.weakAreas  = data.weak_areas || [];
+    state.answers    = {};
+
+    // Auto-fill answers if in simulate mode
+    if (simulate) {
+      data.questions.forEach(q => {
+        const options = Object.keys(q.options);
+        if (Math.random() > 0.4) {
+          state.answers[q.id] = q.correct_answer;
+        } else {
+          const wrong = options.filter(o => o !== q.correct_answer);
+          state.answers[q.id] = wrong[Math.floor(Math.random() * wrong.length)];
+        }
+      });
+    }
+
+    state.phase = 'questions';
     renderPrepPage();
   } catch(e) {
     state.phase = 'select';
@@ -475,7 +492,11 @@ async function startSession() {
 
 function renderLoading(el) {
   el.innerHTML = `
-    <div class="page-header"><div class="tag">Generating</div><h2>Preparing Your Session</h2><p>RAG retrieval + LLM generation in progress...</p></div>
+    <div class="page-header">
+      <div class="tag">${state.simulate ? '⚡ Auto Simulate' : 'Generating'}</div>
+      <h2>Preparing Your Session</h2>
+      <p>RAG retrieval + LLM generation in progress...</p>
+    </div>
     <div class="card"><div class="loading"><div class="spinner"></div><div class="loading-text">Generating MCQs via RAG + LLM...</div></div></div>
   `;
 }
@@ -484,17 +505,29 @@ function renderQuestions(el) {
   const answered = Object.keys(state.answers).length;
   const total = state.questions.length;
   const pct = total > 0 ? Math.round((answered / total) * 100) : 0;
+
   el.innerHTML = `
     <div class="page-header">
       <div class="tag">${state.isAdaptive ? '🎯 Adaptive Mode ON' : '📖 First Session'}</div>
-      <h2>Answer ${total} Questions</h2>
+      <h2>
+        Answer ${total} Questions
+        ${state.simulate ? '<span class="simulate-badge">⚡ AUTO SIMULATE</span>' : ''}
+      </h2>
       <p>${state.isAdaptive ? 'Questions are focused on your previous weak areas.' : 'Fresh questions generated from selected sections.'}</p>
     </div>
+
+    ${state.simulate ? `
+      <div class="alert alert-warning">
+        ⚡ <strong>Auto Simulate Mode</strong> — Answers have been randomly pre-filled (60% correct, 40% wrong). You can change any answer before submitting.
+      </div>
+    ` : ''}
+
     ${state.isAdaptive && state.weakAreas.length > 0 ? `
       <div class="alert alert-info" style="margin-bottom:8px">🎯 <strong>Adaptive Mode</strong> — Focusing on your weak areas:</div>
       ${state.weakAreas.map(w => `<div class="weak-area-item">${w.question_text}</div>`).join('')}
       <div style="margin-bottom:20px"></div>
     ` : ''}
+
     ${state.questions.map((q, i) => `
       <div class="question-card ${state.answers[q.id] ? 'answered' : ''}" id="qcard-${q.id}">
         <div class="question-num">Q${i+1} — SECTION ${q.section_id}</div>
@@ -508,6 +541,7 @@ function renderQuestions(el) {
         </div>
       </div>
     `).join('')}
+
     <div class="submit-bar">
       <div class="submit-progress">
         <div class="submit-label">${answered}/${total} answered</div>
@@ -553,7 +587,8 @@ async function submitAnswers() {
       method: 'POST',
       body: JSON.stringify({ session_id: state.sessionId, questions: state.questions, answers: answersPayload })
     });
-    state.scored = data.scored; state.phase = 'results';
+    state.scored = data.scored;
+    state.phase = 'results';
     renderPrepPage();
   } catch(e) {
     el.innerHTML = `
@@ -570,8 +605,12 @@ function renderResults(el) {
   if (s.score_percent === 100) { fbClass = 'alert-success'; fbMsg = '🏆 Perfect score! Outstanding work!'; }
   else if (s.score_percent >= 80) { fbClass = 'alert-success'; fbMsg = '🎉 Great job! You\'re doing really well!'; }
   else if (s.score_percent >= 60) { fbClass = 'alert-warning'; fbMsg = '📈 Good effort! Review the wrong answers below.'; }
+
   el.innerHTML = `
-    <div class="page-header"><div class="tag">Results</div><h2>Session Complete</h2></div>
+    <div class="page-header">
+      <div class="tag">Results</div>
+      <h2>Session Complete ${state.simulate ? '<span class="simulate-badge">⚡ SIMULATED</span>' : ''}</h2>
+    </div>
     <div class="metrics">
       <div class="metric"><div class="metric-value">${s.score}/${s.total}</div><div class="metric-label">Score</div></div>
       <div class="metric"><div class="metric-value">${s.score_percent}%</div><div class="metric-label">Accuracy</div></div>
@@ -609,8 +648,13 @@ function renderResults(el) {
 }
 
 function resetSession() {
-  state.phase = 'select'; state.questions = []; state.answers = {};
-  state.scored = null; state.sessionId = null; state.weakAreas = [];
+  state.phase = 'select';
+  state.questions = [];
+  state.answers = {};
+  state.scored = null;
+  state.sessionId = null;
+  state.weakAreas = [];
+  state.simulate = false;
   renderPrepPage();
 }
 
