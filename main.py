@@ -2,18 +2,28 @@ import argparse
 import json
 import os
 import uvicorn
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.db.database import init_db
 from app.api.routes import router
 from app.core.prep_engine import run_prep_session
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Run on startup — initialize DB tables automatically."""
+    init_db()
+    yield
+
 
 # --- FastAPI App ---
 app = FastAPI(
     title="Adaptive Document Prep System",
     description="AI-powered prep system for the SLATEFALL dossier.",
-    version="1.0.0"
+    version="1.0.0",
+    lifespan=lifespan
 )
-from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
@@ -22,16 +32,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 app.include_router(router)
-
-
-from contextlib import asynccontextmanager
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    init_db()
-    yield
-
 
 
 # --- CLI ---
@@ -55,26 +57,19 @@ def run_cli():
         description="Adaptive Document Prep System"
     )
     parser.add_argument(
-        "--sections",
-        nargs="+",
-        type=int,
-        default=None,
+        "--sections", nargs="+", type=int, default=None,
         help="Section IDs to study e.g. --sections 1 2 3"
     )
     parser.add_argument(
-        "--simulate",
-        action="store_true",
+        "--simulate", action="store_true",
         help="Simulate user answers (for Scenario B)"
     )
     parser.add_argument(
-        "--output-dir",
-        type=str,
-        default=None,
+        "--output-dir", type=str, default=None,
         help="Directory to save questions.json and kb_snapshot.json"
     )
     parser.add_argument(
-        "--serve",
-        action="store_true",
+        "--serve", action="store_true",
         help="Run as FastAPI server instead of CLI"
     )
 
