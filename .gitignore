@@ -4,3 +4,17 @@ __pycache__/
 *.pyc
 knowledge_base.db
 logs/
+
+# ChromaDB vector store (auto-generated, large files)
+chroma_db/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python cache
+*.pyo
+*.pyd
+
+# Uploaded PDFs (auto-saved by upload feature)
+uploaded_*.pdf
